@@ -15,9 +15,8 @@ your Kindle via USB:
 
 [mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
 
-Read on if you're interested in learning how the tool works so you can
-contribute recipes for turning web documentation for other products and
-services into Kindle ebooks.
+Read on if you're interested in learning how to contribute recipes for turning
+web documentation for other products and services into Kindle ebooks.
 
 ## Requirements
 
