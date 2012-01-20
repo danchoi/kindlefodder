@@ -122,17 +122,33 @@ class DocsOnKindle
       }
       # remove any leading spaces 
       fc = li.children.first
-      if fc.text? 
-        fc.content = fc.content.strip
-        fc.remove if fc.content == ''
+      if fc.text? && fc.content !~ /\w/
+        fc.remove 
       end
 
     }
 
   end
 
+  def doc_metadata
+    {
+      'doc_uuid' => "#{self.class.to_s.downcase}-docs-#{Date.today.to_s}",
+      'title' => "#{self.class.to_s} Documentation",
+      'author' => self.class.to_s,
+      'publisher' => 'github.com/docs_on_kindle', 
+      'subject' => 'Reference', 
+      'date' => Date.today.to_s,
+      'cover' => nil,
+      'masthead' => nil,
+      'mobi_outfile' => "#{self.class.to_s.downcase}-guide.#{Date.today.to_s}.mobi"
+    }
+  end
+
   def mobi!
-    File.open("_document.yml", 'w'){|f| f.puts document.to_yaml}
+    File.open("_document.yml", 'w') {|f| 
+      d = document.merge(doc_metadata)
+      f.puts d.to_yaml
+    }
     exec 'kindlerb'
   end
 end

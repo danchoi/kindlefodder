@@ -4,25 +4,34 @@ require 'docs_on_kindle'
 class Heroku < DocsOnKindle 
 
   def get_source_files
-    start_url = "http://devcenter.heroku.com/categories/add-on-documentation" 
-    @start_doc = Nokogiri::HTML `curl -s #{start_url}`
-    File.open("#{output_dir}/sections.yml", 'w') {|f|f.puts extract_sections.to_yaml}
-  end
 
-  def document 
-    {
-      'doc_uuid' => "heroku-docs-#{Date.today.to_s}",
-      'title' => "Heroku Documentation",
-      'publisher' => "Heroku",
-      'author' => "Heroku",
-      'subject' => 'Reference',
-      'date' => Date.today.to_s,
-      'cover' => nil,
-      'masthead' => nil,
-      'mobi_outfile' => "heroku-guide.#{Date.today.to_s}.mobi"
+    # The start_url is any webpage that will contain the navigation structure
+    # of the documentaion
+
+    start_url = "http://devcenter.heroku.com/categories/add-on-documentation" 
+
+    @start_doc = Nokogiri::HTML `curl -s #{start_url}`
+
+    File.open("#{output_dir}/sections.yml", 'w') {|f|
+
+      # extract_sections() is defined below.  It gets the sections of the ebook
+      # out of the webpage docs navigation sidebar.
+
+      f.puts extract_sections.to_yaml
     }
   end
 
+  # This method is for the ebook metadata.
+
+  def document 
+    {
+      # Fill these in with full paths if available
+      # No sure yet what the proper dimensions are.
+
+      'cover' => nil,
+      'masthead' => nil,
+    }
+  end
 
   def extract_sections
     @start_doc.search('select[@id=quicknav] option').map {|o| 
@@ -54,6 +63,9 @@ class Heroku < DocsOnKindle
     article_doc = Nokogiri::HTML `curl -s #{href}`    
     FileUtils::mkdir_p "#{output_dir}/articles"
     path = "#{output_dir}/articles/#{filename}"
+
+    # Save just the HTML fragment that contains the article text. Throw out everything else.
+
     File.open(path, 'w') {|f| f.puts(article_doc.at('article').inner_html)}
   end
 end
