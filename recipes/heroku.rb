@@ -33,7 +33,9 @@ class Heroku < DocsOnKindle
     }
   end
 
-  # This method should return the Hash structure you see at the end
+  # This method extracts the sections from the html at the start_url
+
+  # This method should return the Hash structure you see at the end.
 
   def extract_sections
     @start_doc.search('select[@id=quicknav] option').map {|o| 
@@ -46,6 +48,9 @@ class Heroku < DocsOnKindle
     }
   end
   
+  # This method extracts the articles from a page or HTML fragment representing 
+  # a section and the articles it contains.
+
   # This method should return an Array containing elements with the Hash
   # structure you see near the end, AND it should save HTML fragments for the
   # articles. See the save_article() method.
@@ -63,6 +68,9 @@ class Heroku < DocsOnKindle
       }
     }
   end
+
+  # This method downloads the HTML for an article, extracts, the HTML fragment 
+  # that contains content, and saves the fragment to a path.
 
   def save_article href
     /(?<filename>[\w-]+)$/ =~ href
