@@ -22,7 +22,7 @@ web documentation for other products and services into Kindle ebooks.
 
 * Ruby 1.9
 * ImageMagick (i.e. the `convert` command)
-* You must be a fairly good [Nokogiri][nokogiri] sushi chef
+* You must be a fairly good at slicing and dicing HTML with [Nokogiri][nokogiri] 
 
 [nokogiri]:http://nokogiri.org/
 
