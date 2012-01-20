@@ -31,7 +31,7 @@ services into Kindle ebooks.
 Go to the [Github issues page][issues] for this project to check if someone is
 working on the recipe you had in mind.  If not, post a Github issue saying that
 you're working on this recipe and give it the "recipe in progress" label. This
-will help prevent too unnecessary duplication of effort.
+will help prevent unnecessary duplication of effort.
 
 [issues]:https://github.com/danchoi/docs_on_kindle/issues
 
