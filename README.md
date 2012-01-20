@@ -28,9 +28,12 @@ services into Kindle ebooks.
 
 ## How to write a recipe
 
-Go to the Github issues for this project to check if someone is working on the
-recipe you had in mind.  Post a Github issue saying that you're working on this
-recipe. This may help prevent duplication of effort.
+Go to the [Github issues page][issues] for this project to check if someone is
+working on the recipe you had in mind.  If not, post a Github issue saying that
+you're working on this recipe and give it the "recipe in progress" label. This
+will help prevent too unnecessary duplication of effort.
+
+[issues]:https://github.com/danchoi/docs_on_kindle/issues
 
 Fork this project and git clone your fork. `cd` into the cloned git
 directory.
