@@ -4,7 +4,7 @@
 The internals of a recipe are up to you, but a recipe should do at least the
 following:
 
-First, inherit from DocsOnKinde.
+First, require 'docs_on_kindle' and subclass DocsOnKindle.
 
 Second, contain a #get_sources_files method that does two things:
 
