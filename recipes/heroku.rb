@@ -8,7 +8,7 @@ First, require 'docs_on_kindle' and subclass DocsOnKindle.
 
 Second, contain a #get_sources_files method that does two things:
 
-1. Save a sections.yml to the path returned by the superclass's output_dir()
+1. Save a sections.yml to the path returned by the superclass's #output_dir
 method with the following format:
 
 --- 
@@ -24,8 +24,8 @@ method with the following format:
     :path: articles/dyno-isolation
   [etc.]
 
-2. Save HTML fragments of the article content at the path values indicated in
-the sections.yml above
+2. Save HTML fragments of the article content at the path values (relative to
+#output_dir) indicated in the sections.yml above
 
 The recipe class should also contain a #document method that returns a metadata
 hash as shown below. The masthead and cover values seem optional. But if you fill
