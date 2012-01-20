@@ -22,7 +22,9 @@ web documentation for other products and services into Kindle ebooks.
 
 * Ruby 1.9
 * ImageMagick (i.e. the `convert` command)
-* Intermediate Nokogiri skills
+* Good [Nokogiri][nokogiri] skills
+
+[nokogiri]:http://nokogiri.org/
 
 Also, download Amazon's [KindleGen 2][kindlegen] tool and put it on your PATH.
 
