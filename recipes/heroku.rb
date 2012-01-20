@@ -45,7 +45,7 @@ class Heroku < DocsOnKindle
 
     start_url = "http://devcenter.heroku.com/categories/add-on-documentation" 
 
-    @start_doc = Nokogiri::HTML `curl -s #{start_url}`
+    @start_doc = Nokogiri::HTML run_shell_command("curl -s #{start_url}")
 
     File.open("#{output_dir}/sections.yml", 'w') {|f|
 
@@ -77,9 +77,10 @@ class Heroku < DocsOnKindle
     @start_doc.search('select[@id=quicknav] option').map {|o| 
       title = o.inner_text
       $stderr.puts "#{title}"
+      articles_list = run_shell_command "curl -s http://devcenter.heroku.com#{o[:value]}"
       { 
         title: title,
-        articles: get_articles(`curl -s http://devcenter.heroku.com#{o[:value]}`) 
+        articles: get_articles(articles_list)
       }
     }
   end
@@ -105,7 +106,7 @@ class Heroku < DocsOnKindle
       article_doc = Nokogiri::HTML html
       File.open("#{output_dir}/#{path}", 'w') {|f| f.puts(article_doc.at('article').inner_html)}
 
-      # Return the article metadata hash for putting into the section's `articles` array
+      # Return the article metadata hash for putting into the section's articles array
 
       { 
         title: title,
