@@ -55,6 +55,7 @@ documentation you procesed.
 
 Now submit a pull request on your fork so I can pull in your recipe.
 
+All recipe contributors will be recognized and thanked on this page!
 
 ## Issues
 
