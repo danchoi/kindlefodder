@@ -5,6 +5,8 @@ Require this file and include this module into each recipe.
 Your recipe class is responsible for getting all the source HTML necessary to
 build the ebook.
 
+See recipes/heroku.rb for an example.
+
 =end
 
 require 'fileutils'
@@ -13,14 +15,31 @@ require 'fileutils'
 require 'yaml'
 require 'date'
 
-module DocsOnKindle
+class DocsOnKindle
 
   STYLESHEET = File.absolute_path "css/kindle.css"
 
+  # Run the recipe class with this command
+
+  def self.generate
+    puts "output dir is #{output_dir}"
+    `mkdir -p #{output_dir}`
+    new.get_source_files
+    new.build_kindlerb_tree
+  end
+
+  def self.output_dir
+    "src/#{self.to_s.downcase}"
+  end
+
+  def output_dir
+    self.class.output_dir
+  end
+
   def build_kindlerb_tree
-    sections = YAML::load_file "#{OUTPUT_DIR}/sections.yml"
+    sections = YAML::load_file "#{output_dir}/sections.yml"
     sections.select! {|s| !s[:articles].empty?}
-    Dir.chdir OUTPUT_DIR do
+    Dir.chdir output_dir do
       sections.each_with_index {|s, section_idx|
         title = s[:title]
         FileUtils::mkdir_p("sections/%03d" % section_idx)
@@ -101,7 +120,12 @@ module DocsOnKindle
         }
         p.remove
       }
-      # remove any spaces 
+      # remove any leading spaces 
+      fc = li.children.first
+      if fc.text? 
+        fc.content = fc.content.strip
+        fc.remove if fc.content == ''
+      end
 
     }
 

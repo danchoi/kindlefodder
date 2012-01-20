@@ -1,16 +1,12 @@
 #!/usr/bin/env ruby
 require 'docs_on_kindle'
 
-class HerokuDocs
-  include ::DocsOnKindle 
-
-  OUTPUT_DIR = "src/heroku"
-  `mkdir -p #{OUTPUT_DIR}`
+class Heroku < DocsOnKindle 
 
   def get_source_files
     start_url = "http://devcenter.heroku.com/categories/add-on-documentation" 
     @start_doc = Nokogiri::HTML `curl -s #{start_url}`
-    File.open("#{OUTPUT_DIR}/sections.yml", 'w') {|f|f.puts extract_sections.to_yaml}
+    File.open("#{output_dir}/sections.yml", 'w') {|f|f.puts extract_sections.to_yaml}
   end
 
   def document 
@@ -56,12 +52,10 @@ class HerokuDocs
   def save_article href
     /(?<filename>[\w-]+)$/ =~ href
     article_doc = Nokogiri::HTML `curl -s #{href}`    
-    FileUtils::mkdir_p "#{OUTPUT_DIR}/articles"
-    path = "#{OUTPUT_DIR}/articles/#{filename}"
+    FileUtils::mkdir_p "#{output_dir}/articles"
+    path = "#{output_dir}/articles/#{filename}"
     File.open(path, 'w') {|f| f.puts(article_doc.at('article').inner_html)}
   end
 end
 
-
-HerokuDocs.new.get_source_files
-HerokuDocs.new.build_kindlerb_tree
+Heroku.generate
