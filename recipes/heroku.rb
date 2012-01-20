@@ -1,4 +1,38 @@
-#!/usr/bin/env ruby
+
+=begin
+
+A recipe recipe needs to the following:
+
+First, Inherit from DocsOnKinde.
+
+Second, contain a #get_sources_files method that does two things:
+
+1. Save a `sections.yml` to the path returned by `output_dir` with this format:
+
+--- 
+- :title: Getting Started
+  :articles: 
+  - :title: Getting Started with Heroku
+    :path: articles/quickstart
+- :title: Platform Basics
+  :articles: 
+  - :title: Architecture Overview
+    :path: articles/architecture-overview
+  - :title: Dyno Isolation
+    :path: articles/dyno-isolation
+  - :title: Dynos
+
+2. Save HTML fragments of the article content at the path values in the
+sections.yml above
+
+The recipe class should also contain a #document method that returns a metadata
+hash as below. The masthead and cover values seem optional. But if you fill
+them in, use absolute paths.
+
+
+=end
+
+
 require 'docs_on_kindle'
 
 class Heroku < DocsOnKindle 
@@ -49,40 +83,36 @@ class Heroku < DocsOnKindle
     }
   end
   
-  # This method extracts the articles from a page or HTML fragment representing 
-  # a section and the articles it contains.
-
-  # This method should return an Array containing elements with the Hash
-  # structure you see near the end, AND it should save HTML fragments for the
-  # articles. See the save_article() method.
+  # For each section, this method it saves the HTML fragment of each article's
+  # content to a path and returns an Array containing hashes with each article's
+  # metadata.
 
   def get_articles html
+    FileUtils::mkdir_p "#{output_dir}/articles"
     category_page = Nokogiri::HTML html 
     xs = category_page.search("ul.articles a").map {|x|
       title = x.inner_text.strip
       href = x[:href] =~ /^http/ ? x[:href] : "http://devcenter.heroku.com#{x[:href]}" 
-      $stderr.puts "-  #{title}"
-      save_article href
+      $stderr.puts "- #{title}"
+
+      # Article content will be saved to path articles/filename
+      path = "articles/" + href[/articles\/([\w-]+)(#\w+|)$/, 1]
+
+      # Save just the HTML fragment that contains the article text. Throw out everything else.
+
+      html = run_shell_command "curl -s #{href}"
+      article_doc = Nokogiri::HTML html
+      File.open("#{output_dir}/#{path}", 'w') {|f| f.puts(article_doc.at('article').inner_html)}
+
+      # Return the article metadata hash for putting into the section's `articles` array
+
       { 
         title: title,
-        url: href
+        path: path
       }
     }
   end
 
-  # This method downloads the HTML for an article, extracts, the HTML fragment 
-  # that contains content, and saves the fragment to a path.
-
-  def save_article href
-    /(?<filename>[\w-]+)$/ =~ href
-    article_doc = Nokogiri::HTML `curl -s #{href}`    
-    FileUtils::mkdir_p "#{output_dir}/articles"
-    path = "#{output_dir}/articles/#{filename}"
-
-    # Save just the HTML fragment that contains the article text. Throw out everything else.
-
-    File.open(path, 'w') {|f| f.puts(article_doc.at('article').inner_html)}
-  end
 end
 
 # RUN IT! This pulls down the documentation and turns it into the Kindle ebook.

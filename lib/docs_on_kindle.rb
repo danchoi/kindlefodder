@@ -51,7 +51,7 @@ class DocsOnKindle
         # save articles
         s[:articles].each_with_index {|a, item_idx|
           article_title = a[:title]
-          /(?<path>articles\/[\w-]+)(#\w+|)$/ =~ a[:url]
+          path = a[:path]
           puts a[:url], path
           item = Nokogiri::HTML(File.read path)
 
