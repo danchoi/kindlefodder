@@ -38,6 +38,10 @@ require 'docs_on_kindle'
 
 class Heroku < DocsOnKindle 
 
+
+
+  # These next two methods must be implemented.
+
   def get_source_files
 
     # The start_url is any webpage that will contain the navigation structure
@@ -68,9 +72,18 @@ class Heroku < DocsOnKindle
     }
   end
 
+
+
+
+  # The methods below are not required methods. They are this recipe's
+  # implementation for generating the required sections.yml and article
+  # fragment files.
+
+
+
   # This method extracts the sections from the html at the start_url
 
-  # This method should return an Array of elements with the Hash structure you
+  # This method returns an Array of elements with the Hash structure you
   # see at the end.
 
   def extract_sections
