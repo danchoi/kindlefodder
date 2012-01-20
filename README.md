@@ -50,7 +50,7 @@ Once you finish your recipe, generate the ebook with this command:
     ruby -Ilib recipes/your_new_recipe.rb
 
 If all goes well, you should have a nice Kindle ebook version of the web
-documentation you procesed.
+documentation you processed.
 
 Now submit a pull request on your fork so I can pull in your recipe.
 
