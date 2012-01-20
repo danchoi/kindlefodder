@@ -6,8 +6,8 @@ in a line or sitting on a couch.
 
 The prototype example is Heroku's web documentation:
 
-![screen](https://github.com/danchoi/docrails_kindle/raw/master/screenshots/toc-sm.gif)
-![screen](https://github.com/danchoi/docrails_kindle/raw/master/screenshots/article-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
 
 You can downloaded the generated Heroku documentation ebook and transfer it to
 your Kindle via USB:
