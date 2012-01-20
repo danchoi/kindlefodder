@@ -97,7 +97,7 @@ class DocsOnKindle
       unless File.size?("images/#{img_file}")
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
       end
-      grayscale_image_path = "grayscale_images/#{img_file.gsub(/(\.\w+)$/, "-grayscale.gif")}"
+      grayscale_image_path = "grayscale_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
       unless File.size?(grayscale_image_path)
         run_shell_command "convert images/#{img_file}[0] -type Grayscale -depth 8 -resize '400x300>' #{grayscale_image_path}"
       end
