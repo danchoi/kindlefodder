@@ -1,7 +1,8 @@
 
 =begin
 
-A recipe recipe needs to the following:
+The internals of a recipe are up to you, but a recipe should do at least the
+following:
 
 First, inherit from DocsOnKinde.
 
@@ -20,10 +21,10 @@ Second, contain a #get_sources_files method that does two things:
     :path: articles/architecture-overview
   - :title: Dyno Isolation
     :path: articles/dyno-isolation
-  - :title: Dynos
+  [etc.]
 
-2. Save HTML fragments of the article content at the path values in the
-sections.yml above
+2. Save HTML fragments of the article content at the path values indicated in
+the sections.yml above
 
 The recipe class should also contain a #document method that returns a metadata
 hash as below. The masthead and cover values seem optional. But if you fill
