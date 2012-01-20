@@ -28,7 +28,7 @@ method with the following format:
 the sections.yml above
 
 The recipe class should also contain a #document method that returns a metadata
-hash as below. The masthead and cover values seem optional. But if you fill
+hash as shown below. The masthead and cover values seem optional. But if you fill
 them in, use absolute paths.
 
 
