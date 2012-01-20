@@ -12,18 +12,24 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
 
-[Download Heroku Guide for Kindle][mobi]
+[Download Heroku Guide for Kindle][heroku-mobi]
 
-[mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
+[Original Heroku Web Documentation][heroku-web]
+
+[heroku-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
+[heroku-web]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
 
 ### Thoughbot Playbook
 
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-article-sm.gif)
 
-[Download Thoughtbot Playbook for Kindle][mobi]
+[Download Thoughtbot Playbook for Kindle][thoughtbot-mobi]
 
-[mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
+[Original Thoughtbot Playbook Web Documentation][thoughtbot-web]
+
+[thoughtbot-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
+[thoughtbot-web]:http://playbook.thoughtbot.com/
 
 
 Read on if you're interested in learning how to contribute recipes for turning
