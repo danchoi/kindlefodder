@@ -32,7 +32,9 @@ class DocsOnKindle
   end
 
   def self.output_dir
-    "src/#{self.to_s.downcase}"
+    d = "src/#{self.to_s.downcase}"
+    FileUtils::mkdir_p d
+    d
   end
 
   def output_dir
