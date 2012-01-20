@@ -1,8 +1,8 @@
 # docs_on_kindle
 
 This project aims to translate web documention for popular software tools into
-Kindle ebooks that are easy to navigate and a pleasure to read while standing
-in a line or sitting on a couch.
+Kindle ebooks that are easy to navigate and a pleasure to read while you're standing
+in a line at the coffeeshop or sitting on a couch.
 
 The prototype example is Heroku's web documentation:
 
