@@ -43,8 +43,8 @@ Run `bundle install` to make sure you have the required dependencies
 
 Create a recipe file in the `recipes/` directory.
 
-Follow the `recipes/heroku.rb` recipe as a model. The pattern should be fairly
-straitforward.
+Follow the `recipes/heroku.rb` recipe as a model. The requirements of a recipe
+should be fairly simple and straitforward.
 
 Once you finish your recipe, generate the ebook with this command:
 
