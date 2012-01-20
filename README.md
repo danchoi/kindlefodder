@@ -62,8 +62,3 @@ All recipe contributors will be recognized and thanked on this page!
 This project is new and rough around the edges, so please feel welcome to
 report issues and contribute to the code. 
 
-## Author
-
-Daniel Choi http://github.com/danchoi
-
-
