@@ -25,6 +25,10 @@ services into Kindle ebooks.
 * ImageMagick (i.e. the `convert` command)
 * Intermediate Nokogiri skills
 
+Also, download Amazon's [KindleGen 2][kindlegen] tool and put it on your PATH.
+
+[kindlegen]:http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000234621
+
 ## How to write a recipe
 
 Go to the [Github issues page][issues] for this project to check if someone is
