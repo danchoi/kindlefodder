@@ -75,6 +75,6 @@ class Heroku < DocsOnKindle
   end
 end
 
-# This pull down the downs and turns it into the Kindle ebook
+# RUN IT! This pulls down the documentation and turns it into the Kindle ebook.
 
 Heroku.generate
