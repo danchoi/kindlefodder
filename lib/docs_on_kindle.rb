@@ -9,7 +9,10 @@ See recipes/heroku.rb for an example.
 
 =end
 
-require 'fileutils'
+unless `which convert` =~ /convert/
+  abort "You need to install imagemagick"
+end
+
 require 'nokogiri'
 require 'fileutils'
 require 'yaml'

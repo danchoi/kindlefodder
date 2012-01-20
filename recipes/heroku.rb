@@ -33,6 +33,8 @@ class Heroku < DocsOnKindle
     }
   end
 
+  # This method should return the Hash structure you see at the end
+
   def extract_sections
     @start_doc.search('select[@id=quicknav] option').map {|o| 
       title = o.inner_text
@@ -44,6 +46,9 @@ class Heroku < DocsOnKindle
     }
   end
   
+  # This method should return the Hash structure you see at the end, AND it
+  # should save HTML fragments for the articles. See the save_article() method.
+
   def get_articles html
     category_page = Nokogiri::HTML html 
     xs = category_page.search("ul.articles a").map {|x|
@@ -69,5 +74,7 @@ class Heroku < DocsOnKindle
     File.open(path, 'w') {|f| f.puts(article_doc.at('article').inner_html)}
   end
 end
+
+# This pull down the downs and turns it into the Kindle ebook
 
 Heroku.generate

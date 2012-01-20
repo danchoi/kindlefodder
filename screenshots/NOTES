@@ -1,0 +1,4 @@
+
+Use imagemagick to resize the original screen shot like this:
+
+convert -resize '300X400>' toc.gif toc-sm.gif
