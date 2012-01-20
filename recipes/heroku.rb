@@ -81,7 +81,7 @@ class Heroku < DocsOnKindle
 
 
 
-  # This method extracts the sections from the html at the start_url
+  # This method extracts the sections from the html sidebar at start_url
 
   # This method returns an Array of elements with the Hash structure you
   # see at the end.
