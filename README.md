@@ -49,13 +49,6 @@ Also, download Amazon's [KindleGen 2][kindlegen] tool and put it on your PATH.
 
 ## How to write a recipe
 
-Go to the [Github issues page][issues] for this project to check if someone is
-working on the recipe you had in mind.  If not, post a Github issue saying that
-you're working on this recipe and give it the "recipe in progress" label. This
-will help prevent unnecessary duplication of effort.
-
-[issues]:https://github.com/danchoi/docs_on_kindle/issues
-
 Fork this project and git clone your fork. `cd` into the cloned git
 directory.
 
@@ -76,7 +69,14 @@ documentation you processed.
 
 Now submit a pull request on your fork so I can pull in your recipe.
 
-All recipe contributors will be recognized and thanked on this page!
+All recipe contributors will be recognized and thanked heartily on this page.
+
+If you're working on a recipe, you may want post a [Github issue][issues]
+saying what you're working on and give it the "recipe in progress"
+label. This will help prevent unnecessary duplication of effort.
+
+[issues]:https://github.com/danchoi/docs_on_kindle/issues
+
 
 ## Issues
 
