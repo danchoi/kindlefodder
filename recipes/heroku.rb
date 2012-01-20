@@ -39,7 +39,7 @@ class Heroku < DocsOnKindle
     @start_doc.search('select[@id=quicknav] option').map {|o| 
       title = o.inner_text
       $stderr.puts "#{title}"
-      s = { 
+      { 
         title: title,
         articles: get_articles(`curl -s http://devcenter.heroku.com#{o[:value]}`) 
       }
@@ -56,7 +56,7 @@ class Heroku < DocsOnKindle
       href = x[:href] =~ /^http/ ? x[:href] : "http://devcenter.heroku.com#{x[:href]}" 
       $stderr.puts "-  #{title}"
       save_article href
-      a = { 
+      { 
         title: title,
         url: href
       }
