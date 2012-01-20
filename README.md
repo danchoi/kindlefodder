@@ -1,6 +1,6 @@
 # docs_on_kindle
 
-This project aims to translate web documention for popular software tools into
+This project aims to translate web documention for popular software tools into and APIs
 Kindle ebooks that are easy to navigate and a pleasure to read while you're standing
 in a line at the coffeeshop or sitting on a couch.
 
