@@ -1,6 +1,6 @@
 p { text-indent: 0; }
 
-p, H1, H2, H3, H4, H5, H6, H7, H8, table, pre { margin-top: 1em;}
+p, H1, H2, H3, H4, H5, H6, H7, H8, table, ul, dl, pre { margin-top: 1em;}
 
 /* doesn't work apparently: */
 dt {
