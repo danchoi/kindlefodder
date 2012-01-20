@@ -3,7 +3,7 @@
 
 A recipe recipe needs to the following:
 
-First, Inherit from DocsOnKinde.
+First, inherit from DocsOnKinde.
 
 Second, contain a #get_sources_files method that does two things:
 
