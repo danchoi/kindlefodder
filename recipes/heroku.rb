@@ -6,7 +6,7 @@ following:
 
 First, require 'docs_on_kindle' and subclass DocsOnKindle.
 
-Second, contain a #get_sources_files method that does two things:
+Second, contain a #get_source_files method that does two things:
 
 1. Save a sections.yml to the path returned by the superclass's #output_dir
 method with the following format:
