@@ -46,8 +46,9 @@ class Heroku < DocsOnKindle
     }
   end
   
-  # This method should return the Hash structure you see at the end, AND it
-  # should save HTML fragments for the articles. See the save_article() method.
+  # This method should return an Array containing elements with the Hash
+  # structure you see near the end, AND it should save HTML fragments for the
+  # articles. See the save_article() method.
 
   def get_articles html
     category_page = Nokogiri::HTML html 
