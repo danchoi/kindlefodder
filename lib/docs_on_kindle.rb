@@ -138,7 +138,7 @@ class DocsOnKindle
       'doc_uuid' => "#{self.class.to_s.downcase}-docs-#{Date.today.to_s}",
       'title' => "#{self.class.to_s} Documentation",
       'author' => self.class.to_s,
-      'publisher' => 'github.com/docs_on_kindle', 
+      'publisher' => 'github.com/danchoi/docs_on_kindle', 
       'subject' => 'Reference', 
       'date' => Date.today.to_s,
       'cover' => nil,
