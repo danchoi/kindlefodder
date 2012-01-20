@@ -3,17 +3,28 @@
 This project aims to translate web documention for popular software tools and
 APIs into Kindle ebooks that are easy to navigate and a pleasure to read.
 
-The prototype example is Heroku's web documentation:
+
+Here are two example Kindle ebooks generated with docs_on_kindle.
+You can download them and transfer them to your Kindle via USB.
+
+### Heroku Guide
 
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
 
-You can download the generated Heroku documentation ebook and transfer it to
-your Kindle via USB:
-
 [Download Heroku Guide for Kindle][mobi]
 
 [mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
+
+### Thoughbot Playbook
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-article-sm.gif)
+
+[Download Thoughtbot Playbook for Kindle][mobi]
+
+[mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
+
 
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.

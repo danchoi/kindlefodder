@@ -22,17 +22,23 @@ class DocsOnKindle
 
   STYLESHEET = File.absolute_path "css/kindle.css"
 
+
   # Run the recipe class with this command
 
   def self.generate
     puts "output dir is #{output_dir}"
-    `mkdir -p #{output_dir}`
+    `rm -rf #{output_dir}`
+    `mkdir -p #{output_dir}/articles`
     new.get_source_files
     new.build_kindlerb_tree
   end
 
+  def self.recipe_slug
+    self.to_s.gsub(/([a-z]+)([A-Z][a-z]+)/, '\1_\2').downcase  
+  end
+
   def self.output_dir
-    d = "src/#{self.to_s.downcase}"
+    d = "src/#{recipe_slug}"
     FileUtils::mkdir_p d
     d
   end
@@ -135,23 +141,21 @@ class DocsOnKindle
 
   end
 
-  def doc_metadata
+  def default_metadata
     {
-      'doc_uuid' => "#{self.class.to_s.downcase}-docs-#{Date.today.to_s}",
+      'doc_uuid' => "#{self.class.recipe_slug}-docs-#{Date.today.to_s}",
       'title' => "#{self.class.to_s} Documentation",
       'author' => self.class.to_s,
       'publisher' => 'github.com/danchoi/docs_on_kindle', 
       'subject' => 'Reference', 
       'date' => Date.today.to_s,
-      'cover' => nil,
-      'masthead' => nil,
-      'mobi_outfile' => "#{self.class.to_s.downcase}-guide.#{Date.today.to_s}.mobi"
+      'mobi_outfile' => "#{self.class.recipe_slug}-guide.#{Date.today.to_s}.mobi"
     }
   end
 
   def mobi!
     File.open("_document.yml", 'w') {|f| 
-      d = document.merge(doc_metadata)
+      d = default_metadata.merge(document)
       f.puts d.to_yaml
     }
     exec 'kindlerb'

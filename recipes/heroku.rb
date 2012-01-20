@@ -65,9 +65,7 @@ class Heroku < DocsOnKindle
 
   def document 
     {
-      # Fill these in with full paths if available
-      # No sure yet what the proper dimensions are.
-
+      'title => 'Heroku Platform Guide',
       'cover' => nil,
       'masthead' => nil,
     }
