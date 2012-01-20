@@ -38,7 +38,7 @@ will help prevent too unnecessary duplication of effort.
 Fork this project and git clone your fork. `cd` into the cloned git
 directory.
 
-First run `bundle install` to make sure you have the required dependencies
+Run `bundle install` to make sure you have the required dependencies
 (nokogiri and kindlerb) in the gem path.
 
 Create a recipe file in the `recipes/` directory.
