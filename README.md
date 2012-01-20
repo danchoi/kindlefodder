@@ -9,7 +9,7 @@ The prototype example is Heroku's web documentation:
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
 
-You can downloaded the generated Heroku documentation ebook and transfer it to
+You can download the generated Heroku documentation ebook and transfer it to
 your Kindle via USB:
 
 [Download Heroku Guide for Kindle][mobi]
