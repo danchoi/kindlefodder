@@ -35,7 +35,8 @@ class Heroku < DocsOnKindle
 
   # This method extracts the sections from the html at the start_url
 
-  # This method should return the Hash structure you see at the end.
+  # This method should return an Array of elements with the Hash structure you
+  # see at the end.
 
   def extract_sections
     @start_doc.search('select[@id=quicknav] option').map {|o| 
