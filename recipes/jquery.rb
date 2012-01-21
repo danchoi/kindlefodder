@@ -82,64 +82,73 @@ class Jquery < DocsOnKindle
         raise "no html"
       end
 
-      article_doc = Nokogiri::HTML html
-
-      content  = ( article_doc.at('#bodyContent') || article_doc.at('#content') )
-
-      # strip javascript
-      content.search("script").each(&:remove)
-
-      # strip comments
-      h1 = content.at("#comments")
-      if h1
-        h1.xpath("./following-sibling::*").each(&:remove)
-        h1.remove
-      end
-
+      doc = Nokogiri::HTML html
       # images have relative paths, so fix them
-      content.search("img[@src]").each {|img|
+      doc.search("img[@src]").each {|img|
         if img['src'] =~ %r{^/}
           img['src'] = @base_url + img['src']
         end
         puts "  image: #{img['src']}"
       }
 
-      # strip edit links and nav links
-      content.search('.editsection').each(&:remove)
-      content.search('#jump-to-nav').each(&:remove)
-
-      # insert placeholders for demos 
-      content.search(".code-demo").each {|n| n.inner_html = "Please see web version of documentation."}
-
-      # extract signatures from ul li and put them in p tags
-      content.search('ul.signatures').each do |methods_div|
-        methods = methods_div.search('li.signature')
-        methods.each {|li| 
-          # turn li into p
-          li.name = 'p'
-        }
-        methods_div.name = 'div' # turn ul into div
-      end
-
-      # strip version added spans because I don't know yet how to control their
-      # style correctly
-      content.search("span.versionAdded").each(&:remove)
-
-      # add right-padding argument names
-      content.search("p.arguement").each {|p|
-        p.at("strong").after(":&nbsp; ")
-      }
-
-
-
       `mkdir -p #{output_dir}/articles`
-      File.open(outpath, 'w') {|f| f.puts content.inner_html}
+      File.open(outpath, 'w') {|f| f.puts doc.inner_html}
 
     end
     path
   end
+
+  # item html cleanup; done in the tree generation phase
+
+  def fixup_html! doc
+    super doc
+
+    puts "fixing up jQuery article html"
+    # strip javascript
+    doc.search("script").each(&:remove)
+
+    # strip comments
+    h1 = doc.at("#comments")
+    if h1
+      h1.xpath("./following-sibling::*").each(&:remove)
+      h1.remove
+    end
+
+
+    # strip edit links and nav links
+    doc.search('.editsection').each(&:remove)
+    doc.search('#jump-to-nav').each(&:remove)
+
+    # insert placeholders for demos 
+    doc.search(".code-demo").each {|n| n.inner_html = "Please see web version of documentation."}
+
+    # extract signatures from ul li and put them in p tags
+    doc.search('ul.signatures').each do |methods_div|
+      methods = methods_div.search('li.signature')
+      methods.each {|li| 
+        # turn li into p
+        li.name = 'p'
+      }
+      methods_div.name = 'div' # turn ul into div
+    end
+
+    # strip version added spans because I don't know yet how to control their
+    # style correctly
+    doc.search("span.versionAdded").each(&:remove)
+
+    # add right-padding argument names
+    doc.search("p.arguement").each {|p|
+      p.at("strong").after(":&nbsp; ")
+    }
+
+    # strip the buggy && space-inefficient table#toc 
+    c = doc.at("table#toc")
+    c.remove if c
+
+
+  end
 end
 
-#Jquery.new.build_kindlerb_tree
-Jquery.generate
+Jquery.new.build_kindlerb_tree
+#Jquery.generate
 

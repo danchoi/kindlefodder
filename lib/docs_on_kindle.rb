@@ -147,8 +147,6 @@ class DocsOnKindle
       } 
 =end
     }
-
-
   end
 
   def default_metadata
