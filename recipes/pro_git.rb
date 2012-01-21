@@ -83,9 +83,6 @@ class ProGit < DocsOnKindle
         img['src'] = "http://progit.org" + img['src']
       end
     }
-    # We should use original images because when they get converted to gifs, the backgrounds
-    # get turned to black by the Kindle, even if they look fine elsewhere.
-    @use_original_images ||= true
 
     res = article_doc.at('#content').inner_html
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
