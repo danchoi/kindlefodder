@@ -94,6 +94,14 @@ class Jquery < DocsOnKindle
       # strip javascript
       content.search("script").each(&:remove)
 
+      # strip comments
+      h1 = content.at("#comments")
+      h1.xpath("./following-sibling::*").each(&:remove)
+      h1.remove
+
+      # strip demos (TODO?)
+      # h = content.at("h4[contains(text(), 'Demo:')]")
+
       `mkdir -p #{output_dir}/articles`
       File.open(outpath, 'w') {|f| f.puts content.inner_html}
 
