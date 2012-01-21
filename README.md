@@ -4,7 +4,7 @@ This project aims to translate web documention for popular software tools and
 APIs into Kindle ebooks that are easy to navigate and a pleasure to read.
 
 
-Here are two example Kindle ebooks generated with docs_on_kindle.
+Here are a few example Kindle ebooks generated with docs_on_kindle.
 You can download them and transfer them to your Kindle via USB.
 
 ### Heroku Guide
