@@ -133,13 +133,16 @@ class DocsOnKindle
         }
         p.remove
       }
-      # remove any leading spaces 
-      fc = li.children.first
-      if fc.text? && fc.content !~ /\w/
-        fc.remove 
-      end
-
+      # remove any leading spaces after elements inside any li tag
+      li.xpath('.//*').each {|x| 
+        c = x.children[0]
+        if c && c.text? && c.content.strip == ''
+          puts "  Removing empty text node first child within <li>"
+          c.remove
+        end
+      } 
     }
+
 
   end
 

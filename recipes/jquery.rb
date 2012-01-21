@@ -96,8 +96,10 @@ class Jquery < DocsOnKindle
 
       # strip comments
       h1 = content.at("#comments")
-      h1.xpath("./following-sibling::*").each(&:remove)
-      h1.remove
+      if h1
+        h1.xpath("./following-sibling::*").each(&:remove)
+        h1.remove
+      end
 
       # strip demos (TODO?)
       # h = content.at("h4[contains(text(), 'Demo:')]")
