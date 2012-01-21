@@ -83,12 +83,16 @@ class Jquery < DocsOnKindle
       article_doc = Nokogiri::HTML html
 
       content  = ( article_doc.at('#bodyContent') || article_doc.at('#content') )
+
       # images have relative paths, so fix them
       content.search("img[@src]").each {|img|
         if img['src'] =~ %r{^/}
           img['src'] = "http://progit.org" + img['src']
         end
       }
+
+      # strip javascript
+      content.search("script").each(&:remove)
 
       `mkdir -p #{output_dir}/articles`
       File.open(outpath, 'w') {|f| f.puts content.inner_html}
