@@ -149,6 +149,6 @@ class Jquery < DocsOnKindle
   end
 end
 
-Jquery.new.build_kindlerb_tree
-#Jquery.generate
+# Jquery.new.build_kindlerb_tree
+Jquery.generate
 
