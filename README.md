@@ -17,7 +17,7 @@ You can download them and transfer them to your Kindle via USB.
 [Original Heroku Web Documentation][heroku-web]
 
 [heroku-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
-[heroku-web]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
+[heroku-web]:http://devcenter.heroku.com/categories/getting-started
 
 ### Thoughbot Playbook
 
