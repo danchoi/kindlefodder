@@ -38,7 +38,7 @@ You can download them and transfer them to your Kindle via USB.
 * [Original Pro Git Book on the Web][progit-web]
 
 [progit-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/pro_git.2012-01-21.mobi
-[progit-web]:http://progit.org/book/ch3-4.html
+[progit-web]:http://progit.org/book/
 
 * * *
 
