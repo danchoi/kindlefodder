@@ -121,8 +121,17 @@ class Jquery < DocsOnKindle
         methods_div.name = 'div' # turn ul into div
       end
 
-      # strip version added spans 
+      # strip version added spans because I don't know yet how to control their
+      # style correctly
       content.search("span.versionAdded").each(&:remove)
+
+      # add right-padding argument names
+      content.search("p.arguement").each {|p|
+        p.at("strong").after(":&nbsp; ")
+      }
+
+
+
       `mkdir -p #{output_dir}/articles`
       File.open(outpath, 'w') {|f| f.puts content.inner_html}
 

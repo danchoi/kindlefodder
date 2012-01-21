@@ -40,7 +40,21 @@ You can download them and transfer them to your Kindle via USB.
 [progit-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/pro_git.2012-01-21.mobi
 [progit-web]:http://progit.org/book/
 
+### jQuery Documentation
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/jquery-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/jquery-article-sm.gif)
+
+* [Download jQuery Documentation for Kindle][jquery-mobi]
+* [Original jQuery Documentation Book on the Web][jquery-web]
+
+[jquery-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/jquery.2012-01-21.mobi
+[jquery-web]:http://docs.jquery.com/Main_Page
+
+
 * * *
+
+# Writing your own ebook recipes
 
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.
