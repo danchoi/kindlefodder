@@ -31,6 +31,17 @@ You can download them and transfer them to your Kindle via USB.
 [thoughtbot-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
 [thoughtbot-web]:http://playbook.thoughtbot.com/
 
+### Pro Git by Scott Chacon
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/progit-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/progit-article-sm.gif)
+
+[Download Pro Git for Kindle][progit-mobi]
+
+[progit-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/pro_git.2012-01-21.mobi
+[progit-web]:http://progit.org/book/ch3-4.html
+
+* * *
 
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.
