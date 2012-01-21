@@ -56,7 +56,8 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen1-sm.gif)
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen2-sm.gif)
 
-This ebook was generated prior to the docs_on_rails project and is available [here][docrails_kindle].
+The code that generate the ebook is actually the evolutionary ancestor to the
+docs_on_rails program and is available [here][docrails_kindle].
 
 [docrails_kindle]:https://github.com/danchoi/docrails_kindle
 
