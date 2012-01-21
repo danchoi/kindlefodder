@@ -22,7 +22,7 @@ class Jquery < DocsOnKindle
       `curl -s 'http://static.jquery.com/files/rocker/images/logo_jquery_215x53.gif' > cover.gif`
     end
     {
-      'title' => 'jQuery',
+      'title' => 'jQuery Documentation',
       'author' => 'jQuery',
       'cover' => 'cover.gif',
       'masthead' => 'cover.gif'
@@ -45,6 +45,8 @@ class Jquery < DocsOnKindle
         }
       }.compact
     }
+    @base_url = "http://api.jquery.com"
+
     [first_section] + @start_doc.search('#jq-p-API-Reference li a').map {|a|
       title = a.inner_text
       href = "/category#{a[:href]}".downcase # the url is slightly misleading
@@ -84,13 +86,6 @@ class Jquery < DocsOnKindle
 
       content  = ( article_doc.at('#bodyContent') || article_doc.at('#content') )
 
-      # images have relative paths, so fix them
-      content.search("img[@src]").each {|img|
-        if img['src'] =~ %r{^/}
-          img['src'] = "http://progit.org" + img['src']
-        end
-      }
-
       # strip javascript
       content.search("script").each(&:remove)
 
@@ -101,9 +96,33 @@ class Jquery < DocsOnKindle
         h1.remove
       end
 
-      # strip demos (TODO?)
-      # h = content.at("h4[contains(text(), 'Demo:')]")
+      # images have relative paths, so fix them
+      content.search("img[@src]").each {|img|
+        if img['src'] =~ %r{^/}
+          img['src'] = @base_url + img['src']
+        end
+        puts "  image: #{img['src']}"
+      }
 
+      # strip edit links and nav links
+      content.search('.editsection').each(&:remove)
+      content.search('#jump-to-nav').each(&:remove)
+
+      # insert placeholders for demos 
+      content.search(".code-demo").each {|n| n.inner_html = "Please see web version of documentation."}
+
+      # extract signatures from ul li and put them in p tags
+      content.search('ul.signatures').each do |methods_div|
+        methods = methods_div.search('li.signature')
+        methods.each {|li| 
+          # turn li into p
+          li.name = 'p'
+        }
+        methods_div.name = 'div' # turn ul into div
+      end
+
+      # strip version added spans 
+      content.search("span.versionAdded").each(&:remove)
       `mkdir -p #{output_dir}/articles`
       File.open(outpath, 'w') {|f| f.puts content.inner_html}
 
@@ -112,5 +131,6 @@ class Jquery < DocsOnKindle
   end
 end
 
+#Jquery.new.build_kindlerb_tree
 Jquery.generate
 

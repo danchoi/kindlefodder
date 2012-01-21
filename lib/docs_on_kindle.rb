@@ -133,7 +133,11 @@ class DocsOnKindle
         }
         p.remove
       }
+=begin
       # remove any leading spaces after elements inside any li tag
+
+      NOTE: this is too broad. Do on a per recipe basis
+
       li.xpath('.//*').each {|x| 
         c = x.children[0]
         if c && c.text? && c.content.strip == ''
@@ -141,6 +145,7 @@ class DocsOnKindle
           c.remove
         end
       } 
+=end
     }
 
 
