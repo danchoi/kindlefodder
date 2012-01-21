@@ -15,7 +15,7 @@ You can download them and transfer them to your Kindle via USB.
 * [Download Heroku Guide for Kindle][heroku-mobi]
 * [Original Heroku Web Documentation][heroku-web]
 
-[heroku-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
+[heroku-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/heroku-guide.2012-01-20.mobi
 [heroku-web]:http://devcenter.heroku.com/categories/getting-started
 
 ### Thoughbot Playbook
@@ -26,7 +26,7 @@ You can download them and transfer them to your Kindle via USB.
 * [Download Thoughtbot Playbook for Kindle][thoughtbot-mobi]
 * [Original Thoughtbot Playbook Web Documentation][thoughtbot-web]
 
-[thoughtbot-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
+[thoughtbot-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/thoughtbot_playbook.2012-01-20.mobi
 [thoughtbot-web]:http://playbook.thoughtbot.com/
 
 ### Pro Git by Scott Chacon

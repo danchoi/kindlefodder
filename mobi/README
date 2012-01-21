@@ -1,9 +1,0 @@
-
-Don't put the recipes generated for your mobi ebooks here.
-
-This is for the sample ebooks only.
-
-Otherwise, the size of the git code repository would grow too big too fast.
-
-We'll need to find a central location to serve all the generated docs_on_kindle
-ebooks from.
