@@ -12,9 +12,8 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
 
-[Download Heroku Guide for Kindle][heroku-mobi]
-
-[Original Heroku Web Documentation][heroku-web]
+* [Download Heroku Guide for Kindle][heroku-mobi]
+* [Original Heroku Web Documentation][heroku-web]
 
 [heroku-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/heroku-guide.2012-01-20.mobi
 [heroku-web]:http://devcenter.heroku.com/categories/getting-started
@@ -24,9 +23,8 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/thoughtbot-article-sm.gif)
 
-[Download Thoughtbot Playbook for Kindle][thoughtbot-mobi]
-
-[Original Thoughtbot Playbook Web Documentation][thoughtbot-web]
+* [Download Thoughtbot Playbook for Kindle][thoughtbot-mobi]
+* [Original Thoughtbot Playbook Web Documentation][thoughtbot-web]
 
 [thoughtbot-mobi]:https://github.com/danchoi/docs_on_kindle/raw/master/mobi/thoughtbot_playbook-guide.2012-01-20.mobi
 [thoughtbot-web]:http://playbook.thoughtbot.com/
@@ -36,7 +34,8 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/progit-toc-sm.gif)
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/progit-article-sm.gif)
 
-[Download Pro Git for Kindle][progit-mobi]
+* [Download Pro Git for Kindle][progit-mobi]
+* [Original Pro Git Book on the Web][progit-web]
 
 [progit-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/pro_git.2012-01-21.mobi
 [progit-web]:http://progit.org/book/ch3-4.html
