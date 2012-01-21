@@ -65,26 +65,36 @@ class Jquery < DocsOnKindle
  
   def save_article_and_return_path href, filename=nil
     path = filename || "articles/" + href[%r{([^/]+)/?$}, 1]
-    full_url = href =~ /^http/ ? href : (@base_url + href)
-    html = run_shell_command "curl -sL #{full_url}"
-    if html.nil?
-      raise "no html"
-    end
-
-    article_doc = Nokogiri::HTML html
-
-    content  = ( article_doc.at('#bodyContent') || article_doc.at('#content') )
-    # images have relative paths, so fix them
-    content.search("img[@src]").each {|img|
-      if img['src'] =~ %r{^/}
-        img['src'] = "http://progit.org" + img['src']
-      end
-    }
-
     outpath = "#{output_dir}/#{path}"
-    `mkdir -p #{output_dir}/articles`
-    File.open("#{output_dir}/#{path}", 'w') {|f| f.puts content.inner_html}
-    return path
+
+    # jQuery's articles are often repeated across sections, so no need to
+    # download a second time
+
+    if File.size?(outpath) 
+      puts "  #{outpath} already downloaded"
+    else
+      
+      full_url = href =~ /^http/ ? href : (@base_url + href)
+      html = run_shell_command "curl -sL #{full_url}"
+      if html.nil?
+        raise "no html"
+      end
+
+      article_doc = Nokogiri::HTML html
+
+      content  = ( article_doc.at('#bodyContent') || article_doc.at('#content') )
+      # images have relative paths, so fix them
+      content.search("img[@src]").each {|img|
+        if img['src'] =~ %r{^/}
+          img['src'] = "http://progit.org" + img['src']
+        end
+      }
+
+      `mkdir -p #{output_dir}/articles`
+      File.open(outpath, 'w') {|f| f.puts content.inner_html}
+
+    end
+    path
   end
 end
 
