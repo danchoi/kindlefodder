@@ -29,7 +29,7 @@ method with the following format:
 
 The recipe class should also contain a #document method that returns a metadata
 hash as shown below. The masthead and cover values seem optional. But if you fill
-them in, paths relative to output_dir.
+them in, use paths relative to output_dir.
 
 
 =end
