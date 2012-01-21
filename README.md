@@ -51,6 +51,15 @@ You can download them and transfer them to your Kindle via USB.
 [jquery-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/jquery.2012-01-21.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
 
+### Ruby on Rails Guides
+
+![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen1-sm.gif)
+![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen2-sm.gif)
+
+This ebook was generated prior to the docs_on_rails project and is available [here][docrails_kindle].
+
+[docrails_kindle]:https://github.com/danchoi/docrails_kindle
+
 
 * * *
 
