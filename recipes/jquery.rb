@@ -138,7 +138,7 @@ class Jquery < DocsOnKindle
 
     # add right-padding argument names
     doc.search("p.arguement").each {|p|
-      p.at("strong").after(":&nbsp; ")
+      p.at("strong").after(" &nbsp; ")
     }
 
     # strip Returns part of method signatures (clunky, not absolutely necessary)
