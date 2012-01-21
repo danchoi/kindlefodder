@@ -141,6 +141,9 @@ class Jquery < DocsOnKindle
       p.at("strong").after(":&nbsp; ")
     }
 
+    # strip Returns part of method signatures (clunky, not absolutely necessary)
+    doc.search("span.returns").each(&:remove) 
+
     # strip the buggy && space-inefficient table#toc 
     c = doc.at("table#toc")
     c.remove if c
@@ -149,6 +152,6 @@ class Jquery < DocsOnKindle
   end
 end
 
-# Jquery.new.build_kindlerb_tree
-Jquery.generate
+Jquery.new.build_kindlerb_tree
+# Jquery.generate
 
