@@ -29,8 +29,9 @@ class DocsOnKindle
     puts "output dir is #{output_dir}"
     `rm -rf #{output_dir}`
     `mkdir -p #{output_dir}/articles`
-    new.get_source_files
-    new.build_kindlerb_tree
+    generator = new
+    generator.get_source_files
+    generator.build_kindlerb_tree
   end
 
   def self.recipe_slug
@@ -106,8 +107,9 @@ class DocsOnKindle
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
       end
       grayscale_image_path = "grayscale_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
+      sleep 0.1
       unless File.size?(grayscale_image_path)
-        run_shell_command "convert images/#{img_file}[0] -type Grayscale -resize '400x300>' #{grayscale_image_path}"
+        run_shell_command "convert images/#{img_file} -compose over -background white -flatten -type Grayscale -resize '400x300>' -alpha off #{grayscale_image_path}"
       end
       img['src'] = [Dir.pwd, grayscale_image_path].join("/")
     }
