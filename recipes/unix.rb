@@ -4,9 +4,9 @@ http://www.faqs.org/docs/artu/index.html
 
 =end
 
-require 'docs_on_kindle'
+require 'kindlefodder'
 
-class Unix < DocsOnKindle
+class Unix < Kindlefodder
 
   def get_source_files
     sections = extract_sections

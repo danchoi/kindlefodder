@@ -1,7 +1,7 @@
-require 'docs_on_kindle'
+require 'kindlefodder'
 
 
-class ProGit < DocsOnKindle
+class ProGit < Kindlefodder
 
   def get_source_files
 

@@ -4,7 +4,7 @@
 The internals of a recipe are up to you, but a recipe should do at least the
 following:
 
-First, require 'docs_on_kindle' and subclass DocsOnKindle.
+First, require 'kindlefodder' and subclass Kindlefodder.
 
 Second, contain a #get_source_files method that does two things:
 
@@ -35,9 +35,9 @@ them in, use paths relative to output_dir.
 =end
 
 
-require 'docs_on_kindle'
+require 'kindlefodder'
 
-class Heroku < DocsOnKindle 
+class Heroku < Kindlefodder 
 
 
 

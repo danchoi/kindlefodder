@@ -11,9 +11,9 @@ http://coffeescript.org/#comparisons
 
 =end
 
-require 'docs_on_kindle'
+require 'kindlefodder'
 
-class FrontendBundle < DocsOnKindle
+class FrontendBundle < Kindlefodder
 
   def get_source_files
     sections = extract_sections

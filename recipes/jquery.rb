@@ -1,6 +1,6 @@
-require 'docs_on_kindle'
+require 'kindlefodder'
 
-class Jquery < DocsOnKindle
+class Jquery < Kindlefodder
 
   def get_source_files
 

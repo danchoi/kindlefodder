@@ -1,6 +1,6 @@
 =begin
 
-Require this file in your recipe and subclass DocsOnKindle.
+Require this file in your recipe and subclass KindleFodder.
 
 Your recipe class is responsible for getting all the source HTML necessary to
 build the ebook.
@@ -18,7 +18,7 @@ require 'fileutils'
 require 'yaml'
 require 'date'
 
-class DocsOnKindle
+class Kindlefodder
 
   STYLESHEET = File.absolute_path "css/kindle.css"
 
@@ -30,7 +30,7 @@ class DocsOnKindle
 
   def self.generate
     puts "output dir is #{output_dir}"
-    if DocsOnKindle.noclobber
+    if self.noclobber
       puts "Preserving files in #{output_dir}"
     else
       run_shell_command "rm -rf #{output_dir}"
@@ -82,7 +82,7 @@ class DocsOnKindle
           puts "  #{item_path} -> #{article_title}"
         }
       }
-      mobi! unless DocsOnKindle.nomobi
+      mobi! unless self.class.nomobi
     end
   end
 
@@ -153,7 +153,7 @@ class DocsOnKindle
       'doc_uuid' => "#{self.class.recipe_slug}-documentation-#{Date.today.to_s}",
       'title' => "#{self.class.to_s} Documentation",
       'author' => self.class.to_s,
-      'publisher' => 'github.com/danchoi/docs_on_kindle', 
+      'publisher' => 'github.com/danchoi/kindlefodder', 
       'subject' => 'Reference', 
       'date' => Date.today.to_s,
       'mobi_outfile' => "#{self.class.recipe_slug}.#{Date.today.to_s}.mobi"

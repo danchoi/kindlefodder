@@ -1,7 +1,7 @@
-require 'docs_on_kindle'
+require 'kindlefodder'
 
 
-class ThoughtbotPlaybook < DocsOnKindle
+class ThoughtbotPlaybook < Kindlefodder
 
   def get_source_files
     @start_url = "http://playbook.thoughtbot.com/"
