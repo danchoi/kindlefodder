@@ -3,8 +3,8 @@
 Kindlefodder is a Ruby framework and a collection of recipes for translating
 websites and webpages into Kindle ebooks that are easy to navigate and a
 pleasure to peruse. Web browsers are good for scanning information, but Kindles
-are a lot better when you want to block out distractions and read with focus
-and concentration.
+are a lot better when you want to block out distractions and actually learn
+stuff.
 
 The ebooks posted here will in most cases be derived from material published
 under a Creative Commons license.  The original authors are welcome to take
