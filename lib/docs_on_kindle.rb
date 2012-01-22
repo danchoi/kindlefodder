@@ -128,24 +128,11 @@ class DocsOnKindle
     doc.search('li').each {|li|
       li.search("p").each {|p|
         # remove surrounding paragraph tags
-        p.children.each {|c|
-          li.add_child c
-        }
+        p.swap p.children
         p.remove
       }
-=begin
       # remove any leading spaces after elements inside any li tag
-
-      NOTE: this is too broad. Do on a per recipe basis
-
-      li.xpath('.//*').each {|x| 
-        c = x.children[0]
-        if c && c.text? && c.content.strip == ''
-          puts "  Removing empty text node first child within <li>"
-          c.remove
-        end
-      } 
-=end
+      li.inner_html = li.inner_html.strip
     }
   end
 
