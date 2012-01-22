@@ -1,7 +1,7 @@
 # docs_on_kindle
 
-docs_on_kindle is a Ruby framework for translating web documention for popular
-software tools and APIs into Kindle ebooks that are easy to navigate and
+docs_on_kindle is a Ruby framework for translating web documention and HTML pages
+into Kindle ebooks that are easy to navigate and
 pleasant to read. It is also a set of recipes for making ebooks out of
 different websites and webpages. 
 
