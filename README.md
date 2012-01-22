@@ -136,7 +136,7 @@ web documentation for other products and services into Kindle ebooks.
 
 If you want to turn web content into an ebook don't have the time or skill to
 write your a Kindlefodder recipe, you can post an [issue][issues] requesting
-help from someone who might be interested into writing the recipe.
+help from someone who might be interested in writing that recipe.
 
 Otherwise, my small software shop, Kaja Software LLC, may be willing to do
 it for a reasonable fee. Send your inquiry to <info@kajasoftware.com>.
