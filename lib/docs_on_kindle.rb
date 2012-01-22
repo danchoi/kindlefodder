@@ -1,6 +1,6 @@
 =begin
 
-Require this file and include this module into each recipe.
+Require this file in your recipe and subclass DocsOnKindle.
 
 Your recipe class is responsible for getting all the source HTML necessary to
 build the ebook.
