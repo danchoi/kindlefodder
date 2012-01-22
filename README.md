@@ -1,11 +1,18 @@
 # docs_on_kindle
 
-This project aims to translate web documention for popular software tools and
-APIs into Kindle ebooks that are easy to navigate and a pleasure to read.
+docs_on_kindle is a Ruby framework for translating web documention for popular
+software tools and APIs into Kindle ebooks that are easy to navigate and
+pleasant to read. It is also a set of recipes for making ebooks out of
+different websites and webpages. 
 
+The ebooks posted here will in most cases be derived from material published
+under a Creative Commons license.  The original authors are welcome to take
+these ebooks, modify them, and distribute them under their own name. 
 
-Here are a few example Kindle ebooks generated with docs_on_kindle.
-You can download them and transfer them to your Kindle via USB.
+## You can download these ebooks now
+
+Here are a few Kindle ebooks generated with the docs_on_kindle framework.  You
+can download them and transfer them to your Kindle via USB.
 
 ### Heroku Guide
 
