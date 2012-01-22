@@ -51,6 +51,17 @@ You can download them and transfer them to your Kindle via USB.
 [jquery-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/jquery.2012-01-21.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
 
+### jQuery Fundamentals by Rebecca Murphey et al.
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/murphey-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/murphey-article-sm.gif)
+
+* [Download jQuery Fundamentations for Kindle][murphey-mobi]
+* [jQuery Fundamentations on the Web][murphey-web]
+
+[murphey-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/jquery_fundamentals.2012-01-22.mobi
+[murphey-web]:http://jqfundamentals.com/
+
 ### Haml/Sass/CoffeeScript Reference
 
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/frontend-toc-sm.gif)
