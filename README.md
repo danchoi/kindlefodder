@@ -104,8 +104,11 @@ the kindlefodder project. That code is available in the
 
 ### The Art of Unix Programming by Eric Steven Raymond
 
+
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/unix-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/unix-article-sm.gif)
+
+This one is my personal favorite.
 
 * [Download The Art of Unix Programming for Kindle][unix-mobi]
 * [The Art of Unix Programming on the Web][unix-web]
