@@ -165,7 +165,7 @@ class FrontendBundle < Kindlefodder
 
     # fix method defs
     doc.search('b.header').each {|x|
-      x.name = 'p'
+      x.name = 'h3'
     }
     tighten_pre doc 
     tighten_lists doc
