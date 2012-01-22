@@ -1,6 +1,6 @@
-# kindlefodder
+# Kindlefodder 
 
-**kindlefodder** is a Ruby framework and a collection of recipes for
+Kindlefodder is a Ruby framework and a collection of recipes for
 translating websites and webpages into Kindle ebooks that are easy to navigate
 and fun to peruse.
 
