@@ -1,6 +1,12 @@
 p { text-indent: 0; }
 
 p, H1, H2, H3, H4, H5, H6, H7, H8, table, ul, dl, pre { margin-top: 1em;}
+h1, h2, h3, h4, h5, h6, h7, h8 { margin-top: 1em;}
+
+blockquote {
+  margin-left: 1em;
+  font-style: italic;
+}
 
 /* doesn't work apparently: */
 dt {

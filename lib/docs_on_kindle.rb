@@ -23,7 +23,7 @@ class DocsOnKindle
   STYLESHEET = File.absolute_path "css/kindle.css"
 
   class << self
-    attr_accessor :noclobber
+    attr_accessor :noclobber, :nomobi
   end
 
   # Run the recipe class with this command
@@ -82,7 +82,7 @@ class DocsOnKindle
           puts "  #{item_path} -> #{article_title}"
         }
       }
-      mobi!
+      mobi! unless DocsOnKindle.nomobi
     end
   end
 

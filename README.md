@@ -7,6 +7,28 @@ APIs into Kindle ebooks that are easy to navigate and a pleasure to read.
 Here are a few example Kindle ebooks generated with docs_on_kindle.
 You can download them and transfer them to your Kindle via USB.
 
+### The Art of Unix Programming by Eric Steven Raymond
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/unix-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/unix-article-sm.gif)
+
+* [Download The Art of Unix Programming for Kindle][unix-mobi]
+* [The Art of Unix Programming on the Web][unix-web]
+
+[unix-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/unix.2012-01-22.mobi
+[unix-web]:http://www.faqs.org/docs/artu/index.html
+
+### Heroku Guide
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/article-sm.gif)
+
+* [Download Heroku Guide for Kindle][heroku-mobi]
+* [Heroku Documentation on the Web][heroku-web]
+
+[heroku-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/heroku-guide.2012-01-20.mobi
+[heroku-web]:http://devcenter.heroku.com/categories/getting-started
+
 ### Heroku Guide
 
 ![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/toc-sm.gif)

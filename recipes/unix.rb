@@ -104,6 +104,30 @@ class Unix < DocsOnKindle
     path
   end
 
+  def fixup_html! item
+    # extract content out of table.blockquote
+    item.search("div.blockquote").each {|x|
+      x.inner_html = "<blockquote>" + x.search("td").map {|td| td.inner_html}.join("\n") + "</blockquote>"
+    }
+    # wrap .epigraph content in blockquotes
+    item.search(".epigraph").each {|x|
+      x.inner_html = "<blockquote>" + x.inner_html + "</blockquote>"
+    }
+    item.search("span.attribution").each {|x|
+      x['style'] = "font-style:italic"
+    }
+
+    item.search('div.titlepage').each {|x|
+      if x.at('table')
+        x.inner_html = x.search("td").map {|td| td.inner_html}.join("\n") 
+      end
+    }
+
+    # remove nested p's in li's
+    item.search('li p').each {|p| p.swap Nokogiri::XML::Text.new(p.inner_text, item) }
+
+  end
+
   def utf8 s
     if s.force_encoding("iso-8859-1").valid_encoding?
       s.encode 'utf-8'
@@ -113,8 +137,12 @@ class Unix < DocsOnKindle
   end
 end
 
-#DocsOnKindle.noclobber = true
-
-Unix.generate
+DocsOnKindle.noclobber = true
+#DocsOnKindle.nomobi = true
+#Unix.generate
+Unix.new.build_kindlerb_tree
+#Dir.chdir 'src/unix' do
+#Unix.new.mobi!
+#end
 
 
