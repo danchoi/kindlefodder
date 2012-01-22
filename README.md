@@ -122,6 +122,7 @@ support the author.  I have both versions.
 * [The Art of Unix Programming on the Web][unix-web]
 
 [unix-print]:http://www.amazon.com/exec/obidos/tg/detail/-/0131429019/104-5607387-8275944?v=glance
+[unix-kindle]:http://www.amazon.com/Art-UNIX-Programming-ebook/dp/B003U2T5BA/ref=tmm_kin_title_0?ie=UTF8&m=AG56TWVU5XWC2
 [unix-mobi]:https://github.com/downloads/danchoi/kindlefodder/unix.2012-01-22.mobi
 [unix-web]:http://www.faqs.org/docs/artu/index.html
 
