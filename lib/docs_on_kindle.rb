@@ -22,12 +22,19 @@ class DocsOnKindle
 
   STYLESHEET = File.absolute_path "css/kindle.css"
 
+  class << self
+    attr_accessor :noclobber
+  end
 
   # Run the recipe class with this command
 
   def self.generate
     puts "output dir is #{output_dir}"
-    `rm -rf #{output_dir}`
+    if DocsOnKindle.noclobber
+      puts "Preserving files in #{output_dir}"
+    else
+      run_shell_command "rm -rf #{output_dir}"
+    end
     `mkdir -p #{output_dir}/articles`
     generator = new
     generator.get_source_files
@@ -62,6 +69,7 @@ class DocsOnKindle
           article_title = a[:title]
           path = a[:path]
           puts a[:url], path
+          puts "Processing '#{a[:title]}' on path: #{path}"
           item = Nokogiri::HTML(File.read path)
 
           download_images! item
@@ -92,9 +100,13 @@ class DocsOnKindle
     doc.at("body").before head
   end
 
-  def run_shell_command cmd
+  def self.run_shell_command cmd
     puts "  #{cmd}"
     `#{cmd}`
+  end
+
+  def run_shell_command cmd
+    self.class.run_shell_command cmd
   end
 
   def download_images! doc
