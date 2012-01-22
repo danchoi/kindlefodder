@@ -75,20 +75,22 @@ version][progit-print] to support the author.  I own the print version.
 [murphey-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery_fundamentals.2012-01-22.mobi
 [murphey-web]:http://jqfundamentals.com/
 
-### Haml/Sass/CoffeeScript Reference
+### Frontend Docs Bundle: Haml/Sass/CoffeeScript/Backbone.js Reference
 
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/frontend-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/frontend-article-sm.gif)
 
-* [Download Haml/Sass/CoffeeScript Documentation for Kindle][frontend-mobi]
+* [Download Frontend Docs Bundle for Kindle][frontend-mobi]
 * [Haml Documentation on the Web][haml]
 * [Sass Documentation on the Web][sass]
 * [CoffeeScript Documentation on the Web][coffee]
+* [Backbone.js Documentation on the Web][backbone]
 
-[frontend-mobi]:https://github.com/downloads/danchoi/kindlefodder/frontend_bundle.2012-01-21.mobi
+[frontend-mobi]:https://github.com/downloads/danchoi/kindlefodder/frontend_bundle.2012-01-22.mobi
 [haml]:http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html
 [sass]:http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html
 [coffee]:http://coffeescript.org/#comparisons
+[backbone]:http://documentcloud.github.com/backbone/
 
 ### Ruby on Rails Guides
 

@@ -148,6 +148,28 @@ class Kindlefodder
     }
   end
 
+  # some fixup utitity methods
+
+  def tighten_pre doc
+    # remove trailing and leading padding from <pre> sections
+    doc.search('pre').each {|x|
+      x.inner_html = x.inner_html.strip
+    }
+  end
+
+  # name is usually "li,dd"
+  def tighten_lists doc, target="li,dd"
+    doc.search(target).each {|x|
+      x.search('p').each {|p| 
+        p.swap p.children
+        p.remove
+      }
+      x.inner_html = x.inner_html.strip
+    }
+  end
+
+
+
   def default_metadata
     {
       'doc_uuid' => "#{self.class.recipe_slug}-documentation-#{Date.today.to_s}",

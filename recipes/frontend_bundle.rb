@@ -24,7 +24,7 @@ class FrontendBundle < Kindlefodder
 
   def document 
     {
-      'title' => 'Haml/Sass/CoffeeScript',
+      'title' => 'Frontend Docs Bundle',
       'author' => 'Open Source Community',
       'cover' => nil,
       'masthead' => nil
@@ -35,7 +35,8 @@ class FrontendBundle < Kindlefodder
     [
       section_from_yard('http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html', 'Haml Reference'),
       section_from_yard('http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html', 'Sass Reference'),
-      coffee_sections
+      coffee_section,
+      backbone_section
     ]
   end
  
@@ -71,7 +72,7 @@ class FrontendBundle < Kindlefodder
     }
   end
 
-  def coffee_sections
+  def coffee_section
     url = 'http://coffeescript.org/'
     doc = Nokogiri::HTML `curl -Ls #{url}`
 
@@ -146,11 +147,65 @@ class FrontendBundle < Kindlefodder
   end
 
 
+  def backbone_section
+    url = 'http://documentcloud.github.com/backbone/'
+    html = run_shell_command "curl -Ls #{url}"
+
+    # this is patch, angle bracket causes problems
+    html = html.gsub(' > ', ' &gt; ').gsub(' < ', ' &lt; ')
+
+    doc = Nokogiri::HTML html
+
+    # fix image srcs
+    doc.search('img').each {|x|
+      if x['src'] !~ /^http/
+        x['src'] = 'http://documentcloud.github.com/backbone/' + x['src']
+      end
+    }
+
+    # fix method defs
+    doc.search('b.header').each {|x|
+      x.name = 'p'
+    }
+    tighten_pre doc 
+    tighten_lists doc
+
+    # put a h2 at top of content
+    doc.at(".container p").before("<h2>Backbone.js</h2>")
+
+    # turn examples into h3
+    doc.search("h2[@id^=examples-]").each {|x| x.name = 'h3'}
+
+    {
+      title: "Backbone.js Reference",
+      articles: doc.search("h2").map {|h2,i|
+        title = h2.inner_text
+        content = h2.to_html + 
+          h2.xpath("./following-sibling::*").take_while {|x|
+            x.name != 'h2' # a simple way to do this
+          }.map(&:to_html).join("\n")
+        path = "backbone.#{title.downcase.gsub(/\W/, '_')}"
+        File.open("#{output_dir}/#{path}", 'w') {|f| f.puts content}
+        {
+          title: title,
+          path: path
+        }
+      }.compact
+    }
+
+
+  end
 
 end
 
+Kindlefodder.noclobber = true
 FrontendBundle.generate
 exit
+FrontendBundle.new.backbone_section
+
+exit
+
+#scratch
 
 xs = FrontendBundle.new.extract_sections
 puts xs.to_yaml
