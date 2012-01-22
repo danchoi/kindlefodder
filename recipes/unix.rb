@@ -126,6 +126,8 @@ class Unix < DocsOnKindle
     # remove nested p's in li's
     item.search('li p').each {|p| p.swap Nokogiri::XML::Text.new(p.inner_text, item) }
 
+    item.search('div.mediaobject').each {|x| x.name = 'p'}
+
   end
 
   def utf8 s
@@ -137,12 +139,4 @@ class Unix < DocsOnKindle
   end
 end
 
-DocsOnKindle.noclobber = true
-#DocsOnKindle.nomobi = true
-#Unix.generate
-Unix.new.build_kindlerb_tree
-#Dir.chdir 'src/unix' do
-#Unix.new.mobi!
-#end
-
-
+Unix.generate
