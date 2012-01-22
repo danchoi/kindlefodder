@@ -23,6 +23,21 @@ class JqueryFundamentals < Kindlefodder
     url = 'http://jqfundamentals.com/'
     html = `curl -Ls #{url}`
     doc = Nokogiri::HTML  html
+
+    # fixups
+    # remove trailing and leading padding from <pre> sections
+    doc.search('pre').each {|x|
+      x.inner_html = x.inner_html.strip
+    }
+    # remove nested dd > p
+    doc.search('dd').each {|dd|
+      dd.search('p').each {|p| 
+        p.swap p.children
+        p.remove
+      }
+      dd.inner_html = dd.inner_html.strip
+    }
+
     [frontmatter(doc)] + doc.search('.chapter').map {|chapter|
       chapter_title = chapter['title']
       {

@@ -11,7 +11,10 @@ blockquote {
 /* doesn't work apparently: */
 dt {
   display:block;
-  margin-top: 1em;
+  margin-top: 0.5em;
+}
+dd {
+  margin-left: 0.5em;
 }
 
 .pagebreak { page-break-before: always; }
