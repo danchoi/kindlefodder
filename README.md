@@ -2,7 +2,7 @@
 
 **docs_on_kindle** is a Ruby framework and a collection of recipes for
 translating websites and webpages into Kindle ebooks that are easy to navigate
-and pleasant to read. 
+and fun to peruse.
 
 The ebooks posted here will in most cases be derived from material published
 under a Creative Commons license.  The original authors are welcome to take
