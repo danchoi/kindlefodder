@@ -26,17 +26,6 @@ can download them and transfer them to your Kindle via USB.
 [heroku-mobi]:https://github.com/downloads/danchoi/kindlefodder/heroku-guide.2012-01-20.mobi
 [heroku-web]:http://devcenter.heroku.com/categories/getting-started
 
-### Heroku Guide
-
-![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/toc-sm.gif)
-![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/article-sm.gif)
-
-* [Download Heroku Guide for Kindle][heroku-mobi]
-* [Heroku Documentation on the Web][heroku-web]
-
-[heroku-mobi]:https://github.com/downloads/danchoi/kindlefodder/heroku-guide.2012-01-20.mobi
-[heroku-web]:http://devcenter.heroku.com/categories/getting-started
-
 ### Thoughbot Playbook
 
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/thoughtbot-toc-sm.gif)
