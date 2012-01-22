@@ -46,8 +46,12 @@ can download them and transfer them to your Kindle via USB.
 * [Download Pro Git for Kindle][progit-mobi]
 * [Pro Git Book on the Web][progit-web]
 
+If you enjoy the Kindlefodder version, I encourage you to buy the [print
+version][progit-print] to support the author.  I have the print version.
+
 [progit-mobi]:https://github.com/downloads/danchoi/kindlefodder/pro_git.2012-01-21.mobi
 [progit-web]:http://progit.org/book/
+[progit-print]:http://www.amazon.com/Pro-Git-Chacon/dp/1430218339/ref=tmm_pap_title_0?ie=UTF8&qid=1327266631&sr=1-1
 
 ### jQuery Documentation
 
@@ -108,11 +112,16 @@ the kindlefodder project. That code is available in the
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/unix-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/unix-article-sm.gif)
 
-This one is my personal favorite.
+This one is my personal favorite. 
+
+If you enjoy the Kindlefodder version, I encourage you to buy the [print
+version][unix-print] or the official [Kindle version][unix-kindle] as well, to
+support the author.  I have both versions.
 
 * [Download The Art of Unix Programming for Kindle][unix-mobi]
 * [The Art of Unix Programming on the Web][unix-web]
 
+[unix-print]:http://www.amazon.com/exec/obidos/tg/detail/-/0131429019/104-5607387-8275944?v=glance
 [unix-mobi]:https://github.com/downloads/danchoi/kindlefodder/unix.2012-01-22.mobi
 [unix-web]:http://www.faqs.org/docs/artu/index.html
 
