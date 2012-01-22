@@ -6,7 +6,7 @@ and fun to peruse.
 
 The ebooks posted here will in most cases be derived from material published
 under a Creative Commons license.  The original authors are welcome to take
-these ebooks, modify them, and distribute them under their own name. 
+these ebooks and recipes, modify them, and distribute them under their own name. 
 
 ## You can download these ebooks now
 
