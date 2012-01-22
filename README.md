@@ -134,6 +134,14 @@ support the author.  I have both versions.
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.
 
+If you want to turn web content into an ebook don't have the time or skill to
+write your a Kindlefodder recipe, you can post an [issue][issues] requesting
+help from someone who might be interested into writing the recipe.
+
+Otherwise, my small software shop, Kaja Software LLC, may be willing to do
+it for a reasonable fee. Send your inquiry to <info@kajasoftware.com>.
+
+
 ## Requirements
 
 * Ruby 1.9
@@ -174,6 +182,7 @@ If you're working on a recipe, you may want post a [Github issue][issues]
 saying what you're working on and give it the "recipe in progress"
 label. This will help prevent unnecessary duplication of effort.
 
+[issues]:https://github.com/danchoi/kindlefodder/issues
 [issues]:https://github.com/danchoi/kindlefodder/issues
 
 
