@@ -33,8 +33,8 @@ class FrontendBundle < DocsOnKindle
 
   def extract_sections
     [
-#      section_from_yard('http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html', 'Haml Reference'),
-#      section_from_yard('http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html', 'Sass Reference'),
+      section_from_yard('http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html', 'Haml Reference'),
+      section_from_yard('http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html', 'Sass Reference'),
       coffee_sections
     ]
   end
@@ -89,6 +89,27 @@ class FrontendBundle < DocsOnKindle
       span.parent = h2
     }
     doc.xpath("//*[@onclick]").each {|n| n.remove_attribute('onclick')}
+    # strip all the span tags that are used for HTML syntax highlighting
+    doc.search(".FunctionName,.Storage,.FunctionArgument,.Keyword,.String,.BuiltInConstant").each {|s| 
+      q = Nokogiri::XML::Text.new( s.inner_text, doc )
+      s.swap q
+    }
+
+    # Strip whitespace at the end of <pre> bodies (due to coffeescript's
+    # brevity compared to js.
+
+    # Also, for each of <pre> sections, label the first coffeescript and the
+    # second javascript, because we can't fit the two column code comparison of
+    # the web version.
+    doc.search("pre").each {|pre| 
+      pre.inner_html = pre.inner_html.rstrip
+      if (v = pre.xpath("./following-sibling::*")[0])  && v.name == 'pre'
+        pre.before("<p><em>CoffeeScript:</em></p>")
+        pre.after("<br/><p><em>JavaScript:</em></p>")
+      end
+    }
+
+    
     {
       title: "CoffeeScript Reference",
     
