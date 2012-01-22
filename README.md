@@ -51,6 +51,21 @@ You can download them and transfer them to your Kindle via USB.
 [jquery-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/jquery.2012-01-21.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
 
+### Haml/Sass/CoffeeScript Reference
+
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/frontend-toc-sm.gif)
+![screen](https://github.com/danchoi/docs_on_kindle/raw/master/screenshots/frontend-article-sm.gif)
+
+* [Download Haml/Sass/CoffeeScript Documentation for Kindle][frontend-mobi]
+* [Haml Documentation on the Web][haml]
+* [Sass Documentation on the Web][sass]
+* [CoffeeScript Documentation on the Web][coffee]
+
+[frontend-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/frontend_bundle.2012-01-21.mobi
+[haml]:http://haml-lang.com/docs/yardoc/file.HAML_REFERENCE.html
+[sass]:http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html
+[coffee]:http://coffeescript.org/#comparisons
+
 ### Ruby on Rails Guides
 
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen1-sm.gif)
