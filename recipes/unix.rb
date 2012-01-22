@@ -27,7 +27,8 @@ class Unix < DocsOnKindle
   def extract_sections
     @base_url = 'http://www.faqs.org/docs/artu/'
     url = 'http://www.faqs.org/docs/artu/index.html'
-    doc = Nokogiri::HTML `curl -s #{url}`
+    html = run_shell_command "curl -s #{url}"
+    doc = Nokogiri::HTML html
     xs = []  # the sections
     frontmatter_section = {
       title: 'Frontmatter',
@@ -63,14 +64,14 @@ class Unix < DocsOnKindle
  
   def titlepage(doc) 
     path = 'articles/titlepage'
-    content = doc.at('.titlepage').inner_html 
+    content = utf8 doc.at('.titlepage').inner_html 
     File.open("#{output_dir}/#{path}", 'w'){|f| f.puts content}
     path
   end
 
   def dedication(doc) 
     path = 'articles/dedication'
-    content = doc.at('.dedication').inner_html
+    content = utf8 doc.at('.dedication').inner_html
     File.open("#{output_dir}/#{path}", 'w'){|f| f.puts content}
     path
   end
@@ -86,17 +87,26 @@ class Unix < DocsOnKindle
     doc.search(".navheader").map &:remove
     doc.search(".navfooter").map &:remove
 
-    content = doc.at('body').inner_html
+    # images have relative paths, so fix them
+    article_doc.search("img[@src]").each {|img|
+      if img['src'] =~ %r{^/}
+        img['src'] = @base_url + img['src']
+      end
+    }
+
+    content = utf8 doc.at('body').inner_html
     File.open("#{output_dir}/#{path}", 'w'){|f| f.puts content}
     path
   end
 
-  def fixup_html! doc
-    super doc
+  def utf8 content
+    # These pages seem to be encoded in iso-8859-1
+    content = content.force_encoding('iso-8859-1')
+    content.encode 'utf-8', undef: :replace, invalid: :replace
   end
 end
 
-DocsOnKindle.noclobber = true
+#DocsOnKindle.noclobber = true
 
 Unix.generate
 
