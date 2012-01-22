@@ -71,9 +71,15 @@ You can download them and transfer them to your Kindle via USB.
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen1-sm.gif)
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen2-sm.gif)
 
-The code used to generate this ebook is actually the evolutionary ancestor to the
-docs_on_kindle project. Both code and ebook are available [here][docrails_kindle].
+The code used to generate this ebook is actually the evolutionary ancestor to
+the docs_on_kindle project. That code is available in the
+[docrails_kindle][docrails_kindle] project.
 
+* [Download Ruby on Rails Guides][railsguides-mobi]
+* [Ruby on Rails Guides on the Web][railsguides-web]
+
+[railsguides-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/rails-guide.2012-01-18.mobi
+[railsguides-web]:http://guides.rubyonrails.org/
 [docrails_kindle]:https://github.com/danchoi/docrails_kindle
 
 
