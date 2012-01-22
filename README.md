@@ -75,7 +75,7 @@ The code used to generate this ebook is actually the evolutionary ancestor to
 the docs_on_kindle project. That code is available in the
 [docrails_kindle][docrails_kindle] project.
 
-* [Download Ruby on Rails Guides][railsguides-mobi]
+* [Download Ruby on Rails Guides for Kindle][railsguides-mobi]
 * [Ruby on Rails Guides on the Web][railsguides-web]
 
 [railsguides-mobi]:https://github.com/downloads/danchoi/docs_on_kindle/rails-guide.2012-01-18.mobi
