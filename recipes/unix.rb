@@ -27,9 +27,26 @@ class Unix < DocsOnKindle
   def extract_sections
     url = 'http://www.faqs.org/docs/artu/index.html'
     doc = Nokogiri::HTML `curl -s #{url}`
-    doc.search('.toc a').select {|a| a['href'] =~ /html$/}.map {|a|
-      puts a
+    xs = []
+    doc.search('.toc a').select {|a| a['href'] =~ /html$/}.each {|a|
+      if a[:href] =~ /(preface|chapter)\.html/ 
+        # looks like a section
+        xs << {
+          title: a.inner_text, 
+          articles:[
+            {
+              title: a.inner_text.strip, 
+              href: a[:href]
+            }
+          ]
+        }
+
+      else 
+        # add an article
+        xs.last[:articles] << {title: a.inner_text, href: a[:href]}
+      end
     }
+    puts xs.to_yaml
   end
  
 
