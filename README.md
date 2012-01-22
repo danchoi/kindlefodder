@@ -13,7 +13,7 @@ ebooks and recipes, modify them, and distribute them under their own name.
 
 ## You can download these ebooks now
 
-Here are a few Kindle ebooks generated with the kindlefodder framework.  You
+Here are a few Kindle ebooks generated with the Kindlefodder framework.  You
 can download them and transfer them to your Kindle via USB.
 
 ### Heroku Guide
