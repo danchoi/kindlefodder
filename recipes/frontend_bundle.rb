@@ -94,6 +94,8 @@ class FrontendBundle < DocsOnKindle
       q = Nokogiri::XML::Text.new( s.inner_text, doc )
       s.swap q
     }
+    # strip run script controls
+    doc.search(".minibutton").each &:remove
 
     # Strip whitespace at the end of <pre> bodies (due to coffeescript's
     # brevity compared to js.
