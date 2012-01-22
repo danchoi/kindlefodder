@@ -104,8 +104,8 @@ class FrontendBundle < DocsOnKindle
     doc.search("pre").each {|pre| 
       pre.inner_html = pre.inner_html.rstrip
       if (v = pre.xpath("./following-sibling::*")[0])  && v.name == 'pre'
-        pre.before("<p><em>CoffeeScript:</em></p>")
-        pre.after("<br/><p><em>JavaScript:</em></p>")
+        pre.before("<h3 style='text-decoration:underline'>CoffeeScript:</h3>")
+        pre.after("<h3 style='text-decoration:underline'>JavaScript:</h3>")
       end
     }
 
