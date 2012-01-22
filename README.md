@@ -47,7 +47,7 @@ can download them and transfer them to your Kindle via USB.
 * [Pro Git Book on the Web][progit-web]
 
 If you enjoy the Kindlefodder version, I encourage you to buy the [print
-version][progit-print] to support the author.  I have the print version.
+version][progit-print] to support the author.  I own the print version.
 
 [progit-mobi]:https://github.com/downloads/danchoi/kindlefodder/pro_git.2012-01-21.mobi
 [progit-web]:http://progit.org/book/
