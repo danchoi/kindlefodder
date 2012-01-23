@@ -197,8 +197,10 @@ report issues and contribute to the code.
 
 Kindlefodder is based on what I learned making [Kindlefeeder][kf], a
 feed aggregation service that bundles your favorite RSS and Atom feeds
-into Kindle ebooks. There are free and paid versions of this service.
+-- like [the full content of the front page items of Hacker
+News][hnfeed] -- into Kindle ebooks delivered to your Kindle. There are
+free and paid versions of this service.
 
 [kf]:http://kindlefeeder.com/
-
+[hn]:http://kindlefeeder.com/feeds/1626
 
