@@ -58,8 +58,8 @@ version][progit-print] to support the author.  I own the print version.
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-article-sm.gif)
 
-* [Download jQuery Documentation for Kindle][jquery-mobi]
-* [jQuery Documentation on the Web][jquery-web]
+* [Download jQuery Reference for Kindle][jquery-mobi]
+* [jQuery Reference on the Web][jquery-web]
 
 [jquery-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery.2012-01-22.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
