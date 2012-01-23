@@ -98,7 +98,7 @@ version][progit-print] to support the author.  I own the print version.
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen2-sm.gif)
 
 The code used to generate this ebook is actually the evolutionary ancestor to
-the kindlefodder project. That code is available in the
+the Kindlefodder project. That code is available in the
 [docrails_kindle][docrails_kindle] project.
 
 * [Download Ruby on Rails Guides for Kindle][railsguides-mobi]
