@@ -158,7 +158,7 @@ Also, download Amazon's [KindleGen 2][kindlegen] tool and put it on your PATH.
 
 ## How to write a recipe
 
-Fork this project and git clone your fork. `cd` into the cloned git
+Fork this project and git clone your fork. `cd` into the cloned project
 directory.
 
 Run `bundle install` to make sure you have the required dependencies
