@@ -202,5 +202,5 @@ News][hnfeed] -- into Kindle ebooks delivered to your Kindle. There are
 free and paid versions of this service.
 
 [kf]:http://kindlefeeder.com/
-[hn]:http://kindlefeeder.com/feeds/1626
+[hnfeed]:http://kindlefeeder.com/feeds/1626
 
