@@ -53,7 +53,7 @@ version][progit-print] to support the author.  I own the print version.
 [progit-web]:http://progit.org/book/
 [progit-print]:http://www.amazon.com/Pro-Git-Chacon/dp/1430218339/ref=tmm_pap_title_0?ie=UTF8&qid=1327266631&sr=1-1
 
-### jQuery Documentation
+### jQuery Reference
 
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-article-sm.gif)

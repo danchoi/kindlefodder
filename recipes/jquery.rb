@@ -22,7 +22,7 @@ class Jquery < Kindlefodder
       `curl -s 'http://static.jquery.com/files/rocker/images/logo_jquery_215x53.gif' > cover.gif`
     end
     {
-      'title' => 'jQuery Documentation',
+      'title' => 'jQuery Reference',
       'author' => 'jQuery',
       'cover' => 'cover.gif',
       'masthead' => 'cover.gif'
@@ -155,6 +155,6 @@ class Jquery < Kindlefodder
   end
 end
 
-# Jquery.new.build_kindlerb_tree
+#Jquery.new.build_kindlerb_tree
 Jquery.generate
 
