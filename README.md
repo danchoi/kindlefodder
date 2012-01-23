@@ -174,9 +174,13 @@ tried to minimize the amount of work a recipe has to do by abstracting
 away all the low-level details of generating Kindle MOBI documents. You
 won't have to think about NCX and OPF files, just fetching HTML source
 material, cleaning the HTML up, and splitting it up into Kindle sections
-and articles.  Stil, writing recipe code to clean up and extract
-Kindle-friendly content can be time-consuming, depending on the source.
-But in many cases it takes me no more than 20 minutes.
+and articles. Images will be downloaded, converted to grayscale,
+resized, and incorporated into the ebook automatically (as long as the
+`src` attributes of the `img` tags point to absolute URLs).
+
+Stil, writing recipe code to clean up and extract Kindle-friendly
+content can be time-consuming, depending on the source.  But in many
+cases it takes me no more than 20 minutes.
 
 Once you finish your recipe, generate the ebook with this command:
 
