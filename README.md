@@ -61,7 +61,7 @@ version][progit-print] to support the author.  I own the print version.
 * [Download jQuery Documentation for Kindle][jquery-mobi]
 * [jQuery Documentation on the Web][jquery-web]
 
-[jquery-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery.2012-01-21.mobi
+[jquery-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery.2012-01-22.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
 
 ### jQuery Fundamentals by Rebecca Murphey et al.

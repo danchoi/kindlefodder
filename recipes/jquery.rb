@@ -144,6 +144,9 @@ class Jquery < Kindlefodder
     # strip Returns part of method signatures (clunky, not absolutely necessary)
     doc.search("span.returns").each(&:remove) 
 
+    # strip extra method title; there are too many
+    doc.search("h1.jq-clearfix").each &:remove
+
     # strip the buggy && space-inefficient table#toc 
     c = doc.at("table#toc")
     c.remove if c
@@ -152,6 +155,6 @@ class Jquery < Kindlefodder
   end
 end
 
-Jquery.new.build_kindlerb_tree
-# Jquery.generate
+# Jquery.new.build_kindlerb_tree
+Jquery.generate
 
