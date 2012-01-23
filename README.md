@@ -193,3 +193,12 @@ label. This will help prevent unnecessary duplication of effort.
 This project is new and rough around the edges, so please feel welcome to
 report issues and contribute to the code. 
 
+## Kindlefeeder
+
+Kindlefodder is based on what I learned making [Kindlefeeder][kf], a
+feed aggregation service that bundles your favorite RSS and Atom feeds
+into Kindle ebooks. There are free and paid versions of this service.
+
+[kf]:http://kindlefeeder.com/
+
+
