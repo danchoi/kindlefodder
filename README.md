@@ -167,11 +167,16 @@ Run `bundle install` to make sure you have the required dependencies
 Create a recipe file in the `recipes/` directory.
 
 Follow the existing recipes as models.  The `recipes/heroku.rb` recipe
-was the first and is also the most extensively commented. The
-requirements of a recipe should be fairly simple and straightforward.
+was the first and is also the most extensively commented. 
 
-Writing recipe code to clean up and extract Kindle-friendly content can
-range from easy to brain-teaseresque, depending on the source.  
+The requirements of a recipe should be simple and straightforward. I've
+tried to minimize the amount of work a recipe has to do by abstracting
+away all the low-level details of generating Kindle MOBI documents. You
+won't have to think about NCX and OPF files, just fetching HTML source
+material, cleaning the HTML up, and splitting it up into Kindle sections
+and articles.  Stil, writing recipe code to clean up and extract
+Kindle-friendly content can be time-consuming, depending on the source.
+But in many cases it takes me no more than 20 minutes.
 
 Once you finish your recipe, generate the ebook with this command:
 
