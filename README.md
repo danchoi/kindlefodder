@@ -178,9 +178,14 @@ and articles. Images will be downloaded, converted to grayscale gifs,
 resized, and incorporated into the ebook automatically (as long as the
 `src` attributes of the `img` tags point to absolute URLs).
 
-Stil, writing recipe code to clean up and extract Kindle-friendly
-content can be time-consuming, depending on the source.  But in many
-cases it takes me no more than 20 minutes.
+Still, writing recipe code to clean up and extract Kindle-friendly
+content can sometimes be time-consuming, depending on the source. Often
+you will have to strip out or tweak HTML content to make it work better
+in Kindle format.  But thanks to the expressive power of Ruby and
+[Nokogiri][noko], performing the necessary HTML plastic surgery on
+a source usually takes me no more than 20 minutes.
+
+[noko]:http://nokogiri.org/
 
 Once you finish your recipe, generate the ebook with this command:
 
