@@ -140,7 +140,7 @@ If you want to turn web content into an ebook but don't have the time or skill t
 write the Kindlefodder recipe, you can post an [issue][issues] requesting
 help from someone who might be interested in writing that recipe.
 
-Otherwise, my small software shop, Kaja Software LLC, may be willing to do
+Otherwise, my software outfit, Kaja Software LLC, may be willing to do
 it for a reasonable fee. Send your inquiry to <info@kajasoftware.com>.
 
 
