@@ -166,8 +166,11 @@ Run `bundle install` to make sure you have the required dependencies
 
 Create a recipe file in the `recipes/` directory.
 
-Follow the `recipes/heroku.rb` recipe as a model. The requirements of a recipe
-should be fairly simple and straightforward.
+Follow the existing recipes as models.  The `recipes/heroku.rb` recipe
+was the first and is also the most extensively commented. The
+requirements of a recipe should be fairly simple and straightforward.
+But writing the code to clean up and extract Kindle-friendly content may
+be more or less challenging, depending on the source.
 
 Once you finish your recipe, generate the ebook with this command:
 
