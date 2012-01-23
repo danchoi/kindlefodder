@@ -169,8 +169,9 @@ Create a recipe file in the `recipes/` directory.
 Follow the existing recipes as models.  The `recipes/heroku.rb` recipe
 was the first and is also the most extensively commented. The
 requirements of a recipe should be fairly simple and straightforward.
-But writing the code to clean up and extract Kindle-friendly content may
-be more or less challenging, depending on the source.
+
+Writing recipe code to clean up and extract Kindle-friendly content can
+range from easy to brain-teaseresque, depending on the source.  
 
 Once you finish your recipe, generate the ebook with this command:
 
