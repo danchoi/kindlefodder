@@ -136,7 +136,7 @@ support the author.  I have both versions.
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.
 
-If you want to turn web content into an ebook don't have the time or skill to
+If you want to turn web content into an ebook but don't have the time or skill to
 write the Kindlefodder recipe, you can post an [issue][issues] requesting
 help from someone who might be interested in writing that recipe.
 
