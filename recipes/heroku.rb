@@ -97,7 +97,7 @@ class Heroku < Kindlefodder
     }
   end
   
-  # For each section, this method it saves the HTML fragment of each article's
+  # For each section, this method saves the HTML fragment of each article's
   # content to a path and returns an Array containing hashes with each article's
   # metadata.
 
