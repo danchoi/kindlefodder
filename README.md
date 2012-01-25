@@ -1,10 +1,10 @@
 # Kindlefodder 
 
-Kindlefodder is a Ruby framework and a collection of recipes for translating
-websites and webpages into Kindle ebooks that are easy to navigate and a
-pleasure to peruse. Web browsers are good for scanning information, but Kindles
-are a lot better when you want to block out distractions and actually learn
-something.
+Kindlefodder is a Ruby framework and a collection of recipes for
+translating website-bound books and documentation into Kindle ebooks that
+are easy to navigate and a pleasure to peruse. Web browsers are good for
+scanning information, but Kindles are a lot better when you want to
+block out distractions and actually learn something.
 
 The ebooks posted here will in most cases be derived from material published
 under a Creative Commons license.  I am grateful to the original authors
@@ -53,15 +53,15 @@ version][progit-print] to support the author.  I own the print version.
 [progit-web]:http://progit.org/book/
 [progit-print]:http://www.amazon.com/Pro-Git-Chacon/dp/1430218339/ref=tmm_pap_title_0?ie=UTF8&qid=1327266631&sr=1-1
 
-### jQuery Documentation
+### jQuery Reference
 
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/jquery-article-sm.gif)
 
-* [Download jQuery Documentation for Kindle][jquery-mobi]
-* [jQuery Documentation on the Web][jquery-web]
+* [Download jQuery Reference for Kindle][jquery-mobi]
+* [jQuery Reference on the Web][jquery-web]
 
-[jquery-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery.2012-01-21.mobi
+[jquery-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery.2012-01-22.mobi
 [jquery-web]:http://docs.jquery.com/Main_Page
 
 ### jQuery Fundamentals by Rebecca Murphey et al.
@@ -98,7 +98,7 @@ version][progit-print] to support the author.  I own the print version.
 ![screen](https://github.com/danchoi/docrails_kindle/raw/master/images/screen2-sm.gif)
 
 The code used to generate this ebook is actually the evolutionary ancestor to
-the kindlefodder project. That code is available in the
+the Kindlefodder project. That code is available in the
 [docrails_kindle][docrails_kindle] project.
 
 * [Download Ruby on Rails Guides for Kindle][railsguides-mobi]
@@ -136,11 +136,11 @@ support the author.  I have both versions.
 Read on if you're interested in learning how to contribute recipes for turning
 web documentation for other products and services into Kindle ebooks.
 
-If you want to turn web content into an ebook don't have the time or skill to
+If you want to turn web content into an ebook but don't have the time or skill to
 write the Kindlefodder recipe, you can post an [issue][issues] requesting
 help from someone who might be interested in writing that recipe.
 
-Otherwise, my small software shop, Kaja Software LLC, may be willing to do
+Otherwise, my software outfit, Kaja Software LLC, may be willing to do
 it for a reasonable fee. Send your inquiry to <info@kajasoftware.com>.
 
 
@@ -158,7 +158,7 @@ Also, download Amazon's [KindleGen 2][kindlegen] tool and put it on your PATH.
 
 ## How to write a recipe
 
-Fork this project and git clone your fork. `cd` into the cloned git
+Fork this project and git clone your fork. `cd` into the cloned project
 directory.
 
 Run `bundle install` to make sure you have the required dependencies
@@ -166,8 +166,26 @@ Run `bundle install` to make sure you have the required dependencies
 
 Create a recipe file in the `recipes/` directory.
 
-Follow the `recipes/heroku.rb` recipe as a model. The requirements of a recipe
-should be fairly simple and straightforward.
+Follow the existing recipes as models.  The `recipes/heroku.rb` recipe
+was the first and is also the most extensively commented. 
+
+The requirements of a recipe should be simple and straightforward. I've
+tried to minimize the amount of work a recipe has to do by abstracting
+away all the low-level details of generating Kindle MOBI documents. You
+won't have to think about NCX and OPF files, just fetching HTML source
+material, cleaning the HTML up, and splitting it up into Kindle sections
+and articles. Images will be downloaded, converted to grayscale gifs,
+resized, and incorporated into the ebook automatically (as long as the
+`src` attributes of the `img` tags point to absolute URLs).
+
+Still, writing recipe code to clean up and extract Kindle-friendly
+content can sometimes be time-consuming, depending on the source. Often
+you will have to strip out or tweak HTML content to make it work better
+in Kindle format.  But thanks to the expressive power of Ruby and
+[Nokogiri][noko], performing the necessary HTML plastic surgery on
+a source usually takes me no more than 20 minutes.
+
+[noko]:http://nokogiri.org/
 
 Once you finish your recipe, generate the ebook with this command:
 
@@ -192,4 +210,15 @@ label. This will help prevent unnecessary duplication of effort.
 
 This project is new and rough around the edges, so please feel welcome to
 report issues and contribute to the code. 
+
+## Kindlefeeder
+
+Kindlefodder is based on what I learned making [Kindlefeeder][kf], a
+feed aggregation service that bundles your favorite RSS and Atom feeds
+-- like [the full content of the front page items of Hacker
+News][hnfeed] -- into Kindle ebooks delivered to your Kindle. There are
+free and paid versions of this service.
+
+[kf]:http://kindlefeeder.com/
+[hnfeed]:http://kindlefeeder.com/feeds/1626
 
