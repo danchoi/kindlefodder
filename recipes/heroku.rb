@@ -65,7 +65,7 @@ class Heroku < Kindlefodder
 
   def document 
     {
-      'title => 'Heroku Platform Guide',
+      'title' => 'Heroku Platform Guide',
       'cover' => nil,
       'masthead' => nil,
     }
