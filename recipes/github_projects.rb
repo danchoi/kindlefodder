@@ -1,6 +1,8 @@
 # encoding: utf-8
 
-# Instructions: See github_readmes.yml for how to select readmes
+# Instructions: 
+# The README pages for this recipe are scraped from https://github.com/danchoi/kindlefodder/wiki/Github-READMEs-and-pages-for-the-GitHub-project-docs-recipe
+# You can edit that wiki page
 
 require 'kindlefodder'
 
