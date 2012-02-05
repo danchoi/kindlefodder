@@ -1,3 +1,4 @@
+# encoding: utf-8 
 =begin
 
 Require this file in your recipe and subclass KindleFodder.
@@ -70,22 +71,20 @@ class Kindlefodder
           path = a[:path]
           puts a[:url], path
           puts "Processing '#{a[:title]}' on path: #{path}"
-          item = Nokogiri::HTML(File.read path)
-
+          item = Nokogiri::HTML(File.open(path,'r:utf-8').read)
           download_images! item
           fixup_html! item
-
           item_path = "sections/%03d/%03d.html" % [section_idx, item_idx] 
           add_head_section item, article_title
+          out = item.to_html
 
-          File.open(item_path, 'w'){|f| f.puts item.to_html}
+          File.open(item_path, 'w:utf-8'){|f| f.puts out}
           puts "  #{item_path} -> #{article_title}"
         }
       }
       mobi! unless self.class.nomobi
     end
   end
-
 
   def add_head_section(doc, title)
     head = Nokogiri::XML::Node.new "head", doc
@@ -113,10 +112,16 @@ class Kindlefodder
     doc.search('img').each {|img|
       src = img[:src] 
       /(?<img_file>[^\/]+)$/ =~ src
+
       FileUtils::mkdir_p 'images'
       FileUtils::mkdir_p 'grayscale_images'
       unless File.size?("images/#{img_file}")
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
+        if img_file !~ /(png|jpeg|jpg|gif)$/i
+          filetype = `identify images/#{img_file} | awk '{print $2}'`.chomp.downcase
+          run_shell_command "mv images/#{img_file} images/#{img_file}.#{filetype}"
+          img_file = "#{img_file}.#{filetype}"
+        end
       end
       grayscale_image_path = "grayscale_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
       sleep 0.1
@@ -134,7 +139,6 @@ class Kindlefodder
     doc.search('dt').each {|dt|
       dt.children.first.before(Nokogiri::XML::Node.new("br", doc))
     }
-
     # We want to remove nested 'p' tags in 'li' tags, because these introduce an undesirable 
     # blank line after the bullet. The expected CSS fix doesn't work.
     doc.search('li').each {|li|
