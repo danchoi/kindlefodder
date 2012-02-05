@@ -16,6 +16,17 @@ ebooks and recipes, modify them, and distribute them under their own name.
 Here are a few Kindle ebooks generated with the Kindlefodder framework.  You
 can download them and transfer them to your Kindle via USB.
 
+### Github Projects
+
+![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/github_projects-toc-sm.gif)
+![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/github_projects-article-sm.gif)
+
+* [Download Heroku Guide for Kindle][github_projects-mobi]
+* [Heroku Documentation on the Web][github_projectsheroku-web]
+
+[heroku-mobi]:https://github.com/downloads/danchoi/kindlefodder/heroku-guide.2012-01-20.mobi
+[heroku-web]:http://devcenter.heroku.com/categories/getting-started
+
 ### Heroku Guide
 
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/toc-sm.gif)

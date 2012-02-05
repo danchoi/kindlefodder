@@ -6,7 +6,7 @@
 
 require 'kindlefodder'
 
-class GithubReadmes < Kindlefodder
+class GithubProjects < Kindlefodder
 
   WIKIPAGE = "https://github.com/danchoi/kindlefodder/wiki/Github-READMEs-for-the-github_projects.rb-recipe"
 
@@ -23,8 +23,8 @@ class GithubReadmes < Kindlefodder
 
   def document
     {
-      'title' => 'GitHub Readmes',
-      'author' => 'Open Source',
+      'title' => 'GitHub Projects',
+      'author' => 'Various',
       'cover' => nil,
       'masthead' => nil,
     }
@@ -62,4 +62,4 @@ class GithubReadmes < Kindlefodder
   end
 end
 
-GithubReadmes.generate
+GithubProjects.generate
