@@ -1,2 +1,3 @@
 linebreak pre sections on #=> or # if line is long
 restore fixup_html! method and make it not mess up UTF characters
+strip extra space leading in pre sections
