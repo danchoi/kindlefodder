@@ -1,0 +1,7 @@
+ruby:
+  - https://github.com/justinfrench/formtastic
+  - https://github.com/apotonick/roar
+  - https://github.com/thoughtbot/factory_girl
+  - https://github.com/thoughtbot/bourbon
+  - https://github.com/jeremyw/stamp
+  - https://github.com/mjbellantoni/formtastic-bootstrap

@@ -1,13 +1,14 @@
-# Instructions: Pass this script a list of GitHub README urls either as
-# arguments or as a list to STDIN
+# encoding: utf-8
+
+# Instructions: See github_readmes.yml for how to select readmes
 
 require 'kindlefodder'
 
 class GithubReadmes < Kindlefodder
 
   def get_source_files
-    @urls = STDIN.tty? ? ARGV : STDIN.readlines
-    puts @urls.inspect
+    @sections = YAML::load_file File.join(File.dirname(__FILE__), 'github_readmes.yml')
+    @sections.inspect
     sections = extract_sections
     puts sections.inspect
     File.open("#{output_dir}/sections.yml", 'w') {|f| f.puts sections.to_yaml }
@@ -15,35 +16,40 @@ class GithubReadmes < Kindlefodder
 
   def document
     {
-      'title' => 'thoughtbot playbook',
-      'author' => 'thoughtbot',
+      'title' => 'GitHub Readmes',
+      'author' => 'Open Source',
       'cover' => nil,
       'masthead' => nil,
     }
   end
-
  
   def extract_sections
-    articles_list = @urls.map { |url|
-      doc = Nokogiri::HTML run_shell_command("curl -s #{url}")
-      title = doc.at('title').inner_text.sub(/ - GitHub$/,'') 
-      $stderr.puts title
-      readme = doc.at('#readme')
-      articles_list = readme.search("h1",'h2').map {|h2|
-        {title: h2.inner_text,
-         path: save_article_and_return_path(h2)}
-      }
-      { 
-        title: title,
-        articles: articles_list
+    sections = @sections.map { |(title, urls)|
+      { title: title,
+        articles: urls.map {|url|
+          html = run_shell_command("curl -s #{url}")
+          html = html.force_encoding('utf-8')
+          doc = Nokogiri::HTML html
+          title = doc.at('title').inner_text.sub(/ - GitHub$/,'') 
+          $stderr.puts title
+          readme = doc.at('#readme')
+          { 
+            title: title,
+            path: save_article_and_return_path(readme, title)
+          }
+        }
       }
     }
   end
+
+  def fixup_html! doc
+    # stub this out because it causes encoding issues with UTF characters like em-dash
+    # (investigate this later)
+  end
  
-  def save_article_and_return_path h2
-    path = "articles/" + h2.inner_text.gsub(/\W/, '-')
-    nodes = h2.xpath("./following-sibling::*").take_while {|x| x.name != 'h2'}
-    content = nodes.map(&:to_html).join("\n")
+  def save_article_and_return_path readme, title
+    path = "articles/" + title.gsub(/\W/, '-')
+    content = readme.inner_html
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts content}
     path
   end
