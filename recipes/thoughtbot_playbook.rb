@@ -62,7 +62,7 @@ class ThoughtbotPlaybook < Kindlefodder
     res = article_doc.at('section').inner_html
 
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
-    return path
+    path
   end
 end
 
