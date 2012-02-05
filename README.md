@@ -24,7 +24,7 @@ can download them and transfer them to your Kindle via USB.
 This is a collection of READMEs and Wiki Pages from useful GitHub projects. (Work in progress)
 
 * [Download GitHub Projects for Kindle][github_projects-mobi]
-* [Add READMEs to the next version of this ebook][github_projectsheroku-web]
+* [Add READMEs to the next version of this ebook][github_projects]
 
 [github_projects-mobi]:https://github.com/downloads/danchoi/kindlefodder/github_projects.2012-02-05.mobi
 [github_projects-web]:https://github.com/danchoi/kindlefodder/wiki/Github-READMEs-for-the-github_projects.rb-recipe
