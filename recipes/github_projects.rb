@@ -8,13 +8,14 @@ require 'kindlefodder'
 
 class GithubReadmes < Kindlefodder
 
-  WIKIPAGE = "https://github.com/danchoi/kindlefodder/wiki/Github-READMEs-and-pages-for-the-GitHub-project-docs-recipe"
+  WIKIPAGE = "https://github.com/danchoi/kindlefodder/wiki/Github-READMEs-for-the-github_projects.rb-recipe"
 
   def get_source_files
     @urls = Nokogiri::HTML(`curl -Ls "#{WIKIPAGE}"`).search("#wiki-body h2").inject({}) {|m, h2|
       m[h2.inner_text] = h2.xpath("./following-sibling::ul[1]/li").map {|li| li.inner_text}
       m
     }
+    puts @urls.to_yaml
     sections = extract_sections
     puts sections.inspect
     File.open("#{output_dir}/sections.yml", 'w') {|f| f.puts sections.to_yaml }
@@ -38,7 +39,7 @@ class GithubReadmes < Kindlefodder
           doc = Nokogiri::HTML html
           title = doc.at('title').inner_text.sub(/ - GitHub$/,'') 
           $stderr.puts title
-          readme = doc.at('#readme')
+          readme = doc.at('#readme') || doc.at('#wiki-wrapper')
           { 
             title: title,
             path: save_article_and_return_path(readme, title)
