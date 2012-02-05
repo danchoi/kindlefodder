@@ -1,0 +1,2 @@
+linebreak pre sections on #=>
+restore fixup_html! method and make it not mess up UTF characters
