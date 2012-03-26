@@ -94,7 +94,7 @@ class Unix < Kindlefodder
 
     # images have relative paths, so fix them
     doc.search("img[@src]").each {|img|
-      if img['src'] =~ %r{^/}
+      if img['src'] !~ %r{^http}
         img['src'] = @base_url + img['src']
       end
     }
