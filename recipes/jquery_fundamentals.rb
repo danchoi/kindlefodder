@@ -13,7 +13,7 @@ class JqueryFundamentals < Kindlefodder
   def document 
     {
       'title' => 'jQuery Fundamentals',
-      'author' => 'Rebecca Murphey',
+      'author' => 'Murphey, Rebecca',
       'cover' => nil,
       'masthead' => nil
     }

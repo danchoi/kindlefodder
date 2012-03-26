@@ -24,7 +24,7 @@ class ProGit < Kindlefodder
     end
     {
       'title' => 'Pro Git',
-      'author' => 'Scott Chacon',
+      'author' => 'Chacon, Scott',
       'cover' => 'cover.gif',
       'masthead' => nil,
     }

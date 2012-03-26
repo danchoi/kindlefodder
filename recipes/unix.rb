@@ -18,7 +18,7 @@ class Unix < Kindlefodder
   def document 
     {
       'title' => 'The Art of Unix Programming',
-      'author' => 'Eric Steven Raymond',
+      'author' => 'Raymond, Eric Steven',
       'cover' => nil,
       'masthead' => nil
     }
