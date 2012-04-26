@@ -82,8 +82,8 @@ version][progit-print] to support the author.  I own the print version.
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/murphey-toc-sm.gif)
 ![screen](https://github.com/danchoi/kindlefodder/raw/master/screenshots/murphey-article-sm.gif)
 
-* [Download jQuery Fundamentations for Kindle][murphey-mobi]
-* [jQuery Fundamentations on the Web][murphey-web]
+* [Download jQuery Fundamentals for Kindle][murphey-mobi]
+* [jQuery Fundamentals on the Web][murphey-web]
 
 [murphey-mobi]:https://github.com/downloads/danchoi/kindlefodder/jquery_fundamentals.2012-01-22.mobi
 [murphey-web]:http://jqfundamentals.com/
