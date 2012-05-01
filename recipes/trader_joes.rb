@@ -40,9 +40,8 @@ class TraderJoes < Kindlefodder
  
   def extract_sections
     @start_doc.search('ul#category-list > li').
-      select {|x| x.at("h3.category-title").inner_text == 'Beverages' }.
+      # select {|x| x.at("h3.category-title").inner_text == 'Beverages' }.
       map {|x|
-      #puts x
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
       
@@ -68,32 +67,35 @@ class TraderJoes < Kindlefodder
     path = filename || "articles/" + href.sub(/^\//, '').sub(/\/$/, '').gsub('/', '.')
 
     full_url = @start_url + '/' + href.sub(/^\//, '')
-
-    html = run_shell_command "curl -s #{full_url}"
-    article_doc = Nokogiri::HTML html
-    article_doc = article_doc.at(".post")
-
-    # article_doc = Nokogiri::HTML File.read("#{output_dir}/#{path}")
-    
+    if $use_cached_html
+      article_doc = Nokogiri::HTML File.read("#{output_dir}/#{path}")
+    else
+      html = run_shell_command "curl -s #{full_url}"
+      article_doc = Nokogiri::HTML html
+      article_doc = article_doc.at(".post")
+    end
 
     # images have relative paths, so fix them
     article_doc.search("h2.title").each {|h2|
       h2.swap "<h3>#{h2.inner_text}</h3>"
 
     }
+    article_doc.search("span").each {|span|
+      span.remove_attribute 'style'
+    }
     article_doc.search("img[@src]").each {|img|
       if img['src'] =~ %r{^/}
         img['src'] = "http://www.traderjoes.com" + img['src']
-        img['class'] = 'float-left'
       end
-      if (p = img.parent.parent.parent) && p.name == 'p'
-        puts "unnesting image: #{img['src']}"
-        p.swap img
+      img.remove_attribute('style')
+      img['class'] = "float-left"
+      p = img.ancestors.detect {|n| puts n.name; n.name == 'p'}
+      if p 
+        p.before img
       end
-
     }
 
-    description = article_doc.at("p").inner_text.strip.split(/\s+/)[0, 10].join(' ')
+    description = ((p = article_doc.at("p")) && p.inner_text.strip.split(/\s+/)[0, 10].join(' ')) || ''
 
     res = article_doc.inner_html
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
@@ -101,5 +103,8 @@ class TraderJoes < Kindlefodder
   end
 end
 
-#TraderJoes.noclobber = true
+#$use_cached_html = true
+if $use_cached_html
+  TraderJoes.noclobber = true
+end
 TraderJoes.generate

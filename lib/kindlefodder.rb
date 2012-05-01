@@ -88,7 +88,7 @@ class Kindlefodder
     end
   end
 
-  def add_head_section(doc, title, description=nil, author=nil)
+  def add_head_section(doc, title, description='', author='')
     head = Nokogiri::XML::Node.new "head", doc
     title_node = Nokogiri::XML::Node.new "title", doc
     title_node.content = title
