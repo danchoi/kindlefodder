@@ -24,3 +24,14 @@ dd {
 #toc .document {
   text-indent: 2em;
 }
+
+img.float-left {
+  float:left;
+  margin-right: 10px;
+}
+
+img {
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+}

@@ -39,7 +39,9 @@ class TraderJoes < Kindlefodder
 
  
   def extract_sections
-    @start_doc.search('ul#category-list > li').map {|x|
+    @start_doc.search('ul#category-list > li').
+      select {|x| x.at("h3.category-title").inner_text == 'Beverages' }.
+      map {|x|
       #puts x
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
@@ -55,12 +57,6 @@ class TraderJoes < Kindlefodder
         }
       }
       puts articles_list.inspect
-
-#      articles_list.unshift({
-#        title: title, # section title
-#        path: save_article_and_return_path(a[:href]) # section href
-#      })
-#
       { 
         title: title,
         articles: articles_list
@@ -70,23 +66,31 @@ class TraderJoes < Kindlefodder
  
   def save_article_and_return_path href, filename=nil
     path = filename || "articles/" + href.sub(/^\//, '').sub(/\/$/, '').gsub('/', '.')
-    if File.size?("#{output_dir}/#{path}")
-      puts "#{path} already saved"
-      return path
-    end
 
     full_url = @start_url + '/' + href.sub(/^\//, '')
 
     html = run_shell_command "curl -s #{full_url}"
-
     article_doc = Nokogiri::HTML html
     article_doc = article_doc.at(".post")
 
+    # article_doc = Nokogiri::HTML File.read("#{output_dir}/#{path}")
+    
+
     # images have relative paths, so fix them
+    article_doc.search("h2.title").each {|h2|
+      h2.swap "<h3>#{h2.inner_text}</h3>"
+
+    }
     article_doc.search("img[@src]").each {|img|
       if img['src'] =~ %r{^/}
         img['src'] = "http://www.traderjoes.com" + img['src']
+        img['class'] = 'float-left'
       end
+      if (p = img.parent.parent.parent) && p.name == 'p'
+        puts "unnesting image: #{img['src']}"
+        p.swap img
+      end
+
     }
 
     description = article_doc.at("p").inner_text.strip.split(/\s+/)[0, 10].join(' ')
