@@ -40,7 +40,7 @@ class TraderJoes < Kindlefodder
  
   def extract_sections
     @start_doc.search('ul#category-list > li').
-      # select {|x| x.at("h3.category-title").inner_text == 'Beverages' }.
+      # select {|x| x.at("h3.category-title").inner_text =~ /Wine/ }.
       map {|x|
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
@@ -77,8 +77,7 @@ class TraderJoes < Kindlefodder
 
     # images have relative paths, so fix them
     article_doc.search("h2.title").each {|h2|
-      h2.swap "<h3>#{h2.inner_text}</h3>"
-
+      h2.name = 'h3'
     }
     article_doc.search("span").each {|span|
       span.remove_attribute 'style'
