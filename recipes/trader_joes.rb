@@ -89,7 +89,7 @@ class TraderJoes < Kindlefodder
       end
       img.remove_attribute('style')
       img['class'] = "float-left"
-      p = img.ancestors.detect {|n| puts n.name; n.name == 'p'}
+      p = img.ancestors.detect {|n| n.name == 'p'}
       if p 
         p.before img
       end
