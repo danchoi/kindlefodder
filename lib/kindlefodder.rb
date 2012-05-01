@@ -75,7 +75,9 @@ class Kindlefodder
           download_images! item
           fixup_html! item
           item_path = "sections/%03d/%03d.html" % [section_idx, item_idx] 
-          add_head_section item, article_title
+          description = a[:description]
+          author = a[:author]
+          add_head_section item, article_title, description, author
           out = item.to_html
 
           File.open(item_path, 'w:utf-8'){|f| f.puts out}
@@ -86,11 +88,19 @@ class Kindlefodder
     end
   end
 
-  def add_head_section(doc, title)
+  def add_head_section(doc, title, description=nil, author=nil)
     head = Nokogiri::XML::Node.new "head", doc
     title_node = Nokogiri::XML::Node.new "title", doc
     title_node.content = title
     title_node.parent = head
+    description_node = Nokogiri::XML::Node.new "meta", doc
+    description_node['name'] = 'description'
+    description_node['content'] = description
+    description_node.parent = head
+    author_node = Nokogiri::XML::Node.new "meta", doc
+    author_node['name'] = 'author'
+    author_node['content'] = author
+    author_node.parent = head
     css = Nokogiri::XML::Node.new "link", doc
     css['rel'] = 'stylesheet'
     css['type'] = 'text/css'
@@ -126,7 +136,7 @@ class Kindlefodder
       grayscale_image_path = "grayscale_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
       sleep 0.1
       unless File.size?(grayscale_image_path)
-        run_shell_command "convert images/#{img_file} -compose over -background white -flatten -type Grayscale -resize '400x300>' -alpha off #{grayscale_image_path}"
+        run_shell_command "convert images/#{img_file} -compose over -background white -flatten -type Grayscale -resize '300x300>' -alpha off #{grayscale_image_path}"
       end
       img['src'] = [Dir.pwd, grayscale_image_path].join("/")
     }
