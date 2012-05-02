@@ -129,7 +129,7 @@ class Kindlefodder
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
         if img_file !~ /(png|jpeg|jpg|gif)$/i
           filetype = `identify images/#{img_file} | awk '{print $2}'`.chomp.downcase
-          run_shell_command "mv images/#{img_file} images/#{img_file}.#{filetype}"
+          run_shell_command "cp images/#{img_file} images/#{img_file}.#{filetype}"
           img_file = "#{img_file}.#{filetype}"
         end
       end

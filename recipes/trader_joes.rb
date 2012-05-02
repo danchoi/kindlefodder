@@ -105,6 +105,7 @@ class TraderJoes < Kindlefodder
         title_n = p.at(".text")
         title_n.name = 'h3'
         recipe_content.at("img").before title_n
+        recipe_content.at("img").after Nokogiri::XML::Node.new("br", recipe_content)
         p.remove
         puts "Inlining recipe: #{title_n.inner_text}"
         article_doc.at('hr').xpath("./following-sibling::*").each(&:remove)
