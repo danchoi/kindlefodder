@@ -42,7 +42,7 @@ class TraderJoes < Kindlefodder
 
  
   def extract_sections
-    @start_doc.search('ul#category-list > li').
+    @start_doc.search('ul#category-list > li')[0,1].
       map {|x|
       title = x.at("h3.category-title").inner_text
       $stderr.puts title

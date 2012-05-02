@@ -78,7 +78,15 @@ class Kindlefodder
           description = a[:description]
           author = a[:author]
           add_head_section item, article_title, description, author
-          out = item.to_html
+          out = item.to_xhtml
+
+          # hacks to get the articles list to appear properly with summaries
+          out.sub!('html xmlns="http://www.w3.org/1999/xhtml"', 
+            '\& xml:lang="en" lang="en"')
+          # out.sub!(/<!DOCTYPE.*$/, '')
+          out.sub!('meta http-equiv="Content-Type" content="text/html; charset=UTF-8"', 
+            'meta content="http://www.w3.org/1999/xhtml; charset=utf-8" http-equiv="Content-Type"')
+          out.strip!
 
           File.open(item_path, 'w:utf-8'){|f| f.puts out}
           puts "  #{item_path} -> #{article_title}"
