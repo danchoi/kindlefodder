@@ -124,7 +124,7 @@ class Kindlefodder
       /(?<img_file>[^\/]+)$/ =~ src
 
       FileUtils::mkdir_p 'images'
-      FileUtils::mkdir_p 'grayscale_images'
+      FileUtils::mkdir_p 'processed_images'
       unless File.size?("images/#{img_file}")
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
         if img_file !~ /(png|jpeg|jpg|gif)$/i
@@ -133,12 +133,12 @@ class Kindlefodder
           img_file = "#{img_file}.#{filetype}"
         end
       end
-      grayscale_image_path = "grayscale_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
+      processed_image_path = "processed_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
       sleep 0.1
-      unless File.size?(grayscale_image_path)
-        run_shell_command "convert images/#{img_file} -compose over -background white -flatten -type Grayscale -resize '300x200>' -alpha off #{grayscale_image_path}"
+      unless File.size?(processed_image_path)
+        run_shell_command "convert images/#{img_file} -compose over -background white -flatten -resize '300x200>' -alpha off #{processed_image_path}"
       end
-      img['src'] = [Dir.pwd, grayscale_image_path].join("/")
+      img['src'] = [Dir.pwd, processed_image_path].join("/")
     }
   end
   

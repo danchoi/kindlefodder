@@ -20,7 +20,7 @@ class TraderJoes < Kindlefodder
    def download_cover_image
     if !File.size?("cover.gif")
       `curl -s 'http://www.traderjoes.com/images/fearless-flyer/logo-fearless-flyer.png' > cover.png`
-      run_shell_command "convert cover.png -type Grayscale -resize '400x300>' cover.gif"
+      run_shell_command "convert cover.png -resize '400x300>' cover.gif"
     end
 
    end
@@ -40,7 +40,7 @@ class TraderJoes < Kindlefodder
  
   def extract_sections
     @start_doc.search('ul#category-list > li').
-      # select {|x| x.at("h3.category-title").inner_text =~ /Wine/ }.
+      #select {|x| x.at("h3.category-title").inner_text =~ /Wine/ }.
       map {|x|
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
