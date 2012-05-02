@@ -83,10 +83,12 @@ class Kindlefodder
           # hacks to get the articles list to appear properly with summaries
           out.sub!('html xmlns="http://www.w3.org/1999/xhtml"', 
             '\& xml:lang="en" lang="en"')
-          # out.sub!(/<!DOCTYPE.*$/, '')
+          out.sub!(/<!DOCTYPE.*$/, '')
           out.sub!('meta http-equiv="Content-Type" content="text/html; charset=UTF-8"', 
             'meta content="http://www.w3.org/1999/xhtml; charset=utf-8" http-equiv="Content-Type"')
           out.strip!
+          # remove these useless characters:
+          out.gsub!('&#13;', '')
 
           File.open(item_path, 'w:utf-8'){|f| f.puts out}
           puts "  #{item_path} -> #{article_title}"
@@ -164,10 +166,16 @@ class Kindlefodder
         p.swap p.children
         p.remove
       }
+    }
+
+    doc.search('li,p').each {|li|
       # remove any leading spaces before elements inside any li tag
       # THIS causes encoding problems!
       #li.inner_html = li.inner_html.strip
-      if (n = li.children.first).text?
+      if (n = li.children.first) && n.text?
+        n.content = n.content.strip
+      end
+      if (n = li.children.last) && n.text?
         n.content = n.content.strip
       end
     }
