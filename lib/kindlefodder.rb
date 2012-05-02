@@ -63,7 +63,7 @@ class Kindlefodder
       sections.each_with_index {|s, section_idx|
         title = s[:title]
         FileUtils::mkdir_p("sections/%03d" % section_idx)
-        File.open("sections/%03d/_section.txt" % section_idx, 'w') {|f| f.puts title}
+        File.open("sections/%03d/_section.txt" % section_idx, 'w:utf-8') {|f| f.puts title}
         puts "sections/%03d -> #{title}" % section_idx
         # save articles
         s[:articles].each_with_index {|a, item_idx|
@@ -71,7 +71,7 @@ class Kindlefodder
           path = a[:path]
           puts a[:url], path
           puts "Processing '#{a[:title]}' on path: #{path}"
-          item = Nokogiri::HTML(File.open(path,'r:utf-8').read)
+          item = Nokogiri::HTML(File.open(path,'r:utf-8').read, nil, 'UTF-8')
           download_images! item
           fixup_html! item
           item_path = "sections/%03d/%03d.html" % [section_idx, item_idx] 
@@ -82,6 +82,7 @@ class Kindlefodder
 
           File.open(item_path, 'w:utf-8'){|f| f.puts out}
           puts "  #{item_path} -> #{article_title}"
+          exit
         }
       }
       mobi! unless self.class.nomobi
@@ -143,7 +144,6 @@ class Kindlefodder
   end
   
   def fixup_html! doc
-
     # Sort of a hack to improve dt elements spacing
     # Using a css rule margin-top doesn't work
     doc.search('dt').each {|dt|
@@ -157,8 +157,12 @@ class Kindlefodder
         p.swap p.children
         p.remove
       }
-      # remove any leading spaces after elements inside any li tag
-      li.inner_html = li.inner_html.strip
+      # remove any leading spaces before elements inside any li tag
+      # THIS causes encoding problems!
+      #li.inner_html = li.inner_html.strip
+      if (n = li.children.first).text?
+        n.content = n.content.strip
+      end
     }
   end
 

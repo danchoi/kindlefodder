@@ -1,3 +1,4 @@
+# encoding: utf-8
 require 'kindlefodder'
 
 
@@ -7,8 +8,8 @@ class TraderJoes < Kindlefodder
     @internal_links = {}
 
     @start_url = "http://www.traderjoes.com/fearless-flyer"
-    #@start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
-    @start_doc = Nokogiri::HTML File.read("temp.html")
+    #@start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}"), nil, 'UTF-8'
+    @start_doc = Nokogiri::HTML File.read("temp.html"), nil, 'UTF-8'
 
     sections = extract_sections
 
@@ -42,8 +43,6 @@ class TraderJoes < Kindlefodder
  
   def extract_sections
     @start_doc.search('ul#category-list > li').
-      # uncomment to shorten test time for dev
-      # select {|x| x.at("h3.category-title").inner_text =~ /Bakery/ }.
       map {|x|
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
@@ -71,10 +70,10 @@ class TraderJoes < Kindlefodder
 
     full_url = @start_url + '/' + href.sub(/^\//, '')
     if $use_cached_html
-      article_doc = Nokogiri::HTML File.read("#{output_dir}/#{path}")
+      article_doc = Nokogiri::HTML File.read("#{output_dir}/#{path}"), nil, 'UTF-8'
     else
       html = run_shell_command "curl -s #{full_url}"
-      article_doc = Nokogiri::HTML html
+      article_doc = Nokogiri::HTML html, nil, 'UTF-8'
       article_doc = article_doc.at(".post")
     end
 
@@ -97,7 +96,9 @@ class TraderJoes < Kindlefodder
     }.uniq
     recipe_urls.each do |url|
       recipe_html = run_shell_command "curl '#{url}'"
-      recipe_content = Nokogiri::HTML(recipe_html).at('.oneRecipe')
+      # Must do this to prevent encoding irregularities:
+      recipe_html.force_encoding("UTF-8")
+      recipe_content = Nokogiri::HTML(recipe_html, nil, 'UTF-8').at('.oneRecipe')
       recipe_content.search("p.back,.clear,.hr").remove
       p = recipe_content.at("p.title")
       if p
@@ -110,6 +111,8 @@ class TraderJoes < Kindlefodder
         article_doc.at('hr').after recipe_content
       end
     end
+
+    # The first one is the main image; the next is a recipe image we don't need to touch
     article_doc.search("img[@src]").each {|img|
       if img['src'] =~ %r{^/}
         img['src'] = "http://www.traderjoes.com" + img['src']
@@ -138,7 +141,7 @@ class TraderJoes < Kindlefodder
     description = ((p = article_doc.at("p")) && p.inner_text.strip.split(/\s+/)[0, 10].join(' ')) || ''
 
     res = article_doc.inner_html
-    File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
+    File.open("#{output_dir}/#{path}", 'w:utf-8') {|f| f.puts res}
     return [path, description]
   end
 
