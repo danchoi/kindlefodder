@@ -4,6 +4,7 @@ require 'kindlefodder'
 class TraderJoes < Kindlefodder
 
   def get_source_files
+    @internal_links = {}
 
     @start_url = "http://www.traderjoes.com/fearless-flyer"
     #@start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
@@ -82,6 +83,31 @@ class TraderJoes < Kindlefodder
     article_doc.search("span").each {|span|
       span.remove_attribute 'style'
     }
+    # inline any recipes:
+    # http://www.traderjoes.com/recipes/recipe.asp?rid=146
+    # example
+    # <br><br><br><br><br><br><br><span><span>Smoked Salmon Cucumber Sandwiches—<span><strong><a href="/recipes/recipe.asp?rid=146">Get the recipe!</a></stron
+    
+    recipe_urls = article_doc.search("a").select {|a| a[:href] =~ %r|^/recipes/|}.map {|a|
+     recipe_url = "http://www.traderjoes.com#{a[:href]}" 
+     a.remove
+     recipe_url
+    }.uniq
+    recipe_urls.each do |url|
+      recipe_html = run_shell_command "curl '#{url}'"
+      recipe_content = Nokogiri::HTML(recipe_html).at('.oneRecipe')
+      recipe_content.search("p.back,.clear,.hr").remove
+      p = recipe_content.at("p.title")
+      if p
+        title_n = p.at(".text")
+        title_n.name = 'h3'
+        recipe_content.at("img").before title_n
+        p.remove
+        puts "Inlining recipe: #{title_n.inner_text}"
+        article_doc.at('hr').xpath("./following-sibling::*").each(&:remove)
+        article_doc.at('hr').after recipe_content
+      end
+    end
     article_doc.search("img[@src]").each {|img|
       if img['src'] =~ %r{^/}
         img['src'] = "http://www.traderjoes.com" + img['src']
@@ -93,6 +119,21 @@ class TraderJoes < Kindlefodder
         p.before img
       end
     }
+
+    # check for any internal links:
+    # Examples:
+    # INTERNAL LINK: /fearless-flyer/article.asp?article_id=600&preview=true
+    # INTERNAL LINK: /fearless-flyer/article.asp?article_id=599&preview=true
+    #
+    article_doc.search("a").each {|a|
+      if a[:href] =~ %r{^/fearless-flyer/article.asp?article_id}
+        puts "INTERNAL LINK: #{a}"
+        # track cross links in map. Key by title (simplest)
+        # TODO 
+      end
+    }
+    puts article_doc
+
 
     description = ((p = article_doc.at("p")) && p.inner_text.strip.split(/\s+/)[0, 10].join(' ')) || ''
 
