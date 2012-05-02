@@ -12,10 +12,11 @@ class TraderJoes < Kindlefodder
 
     sections = extract_sections
 
+
     File.open("#{output_dir}/sections.yml", 'w') {|f|
       f.puts sections.to_yaml
     }
-
+    fix_crosslinks sections
   end
 
    def download_cover_image
@@ -41,7 +42,8 @@ class TraderJoes < Kindlefodder
  
   def extract_sections
     @start_doc.search('ul#category-list > li').
-      #select {|x| x.at("h3.category-title").inner_text =~ /Wine/ }.
+      # uncomment to shorten test time for dev
+      # select {|x| x.at("h3.category-title").inner_text =~ /Bakery/ }.
       map {|x|
       title = x.at("h3.category-title").inner_text
       $stderr.puts title
@@ -124,16 +126,14 @@ class TraderJoes < Kindlefodder
     # Examples:
     # INTERNAL LINK: /fearless-flyer/article.asp?article_id=600&preview=true
     # INTERNAL LINK: /fearless-flyer/article.asp?article_id=599&preview=true
-    #
     article_doc.search("a").each {|a|
-      if a[:href] =~ %r{^/fearless-flyer/article.asp?article_id}
+      if a[:href] =~ %r{^/fearless-flyer/article.asp\?article_id}
         puts "INTERNAL LINK: #{a}"
         # track cross links in map. Key by title (simplest)
-        # TODO 
+        a[:href] = "http://www.traderjoes.com#{a[:href].sub(/&preview=true/, '')}" 
+        puts a[:href]
       end
     }
-    puts article_doc
-
 
     description = ((p = article_doc.at("p")) && p.inner_text.strip.split(/\s+/)[0, 10].join(' ')) || ''
 
@@ -141,6 +141,12 @@ class TraderJoes < Kindlefodder
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
     return [path, description]
   end
+
+  # Go through all the articles and see if there are any crosslinks
+  def fix_crosslinks sections
+    # TODO
+  end
+
 end
 
 #$use_cached_html = true
