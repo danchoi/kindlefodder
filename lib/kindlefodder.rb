@@ -82,7 +82,6 @@ class Kindlefodder
 
           File.open(item_path, 'w:utf-8'){|f| f.puts out}
           puts "  #{item_path} -> #{article_title}"
-          exit
         }
       }
       mobi! unless self.class.nomobi
