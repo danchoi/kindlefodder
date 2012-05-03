@@ -8,8 +8,8 @@ class TraderJoes < Kindlefodder
     @internal_links = {}
 
     @start_url = "http://www.traderjoes.com/fearless-flyer"
-    #@start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}"), nil, 'UTF-8'
-    @start_doc = Nokogiri::HTML File.read("temp.html"), nil, 'UTF-8'
+    @start_doc = Nokogiri::HTML run_shell_command("curl -L -s #{@start_url}"), nil, 'UTF-8'
+    #@start_doc = Nokogiri::HTML File.read("temp.html"), nil, 'UTF-8'
 
     sections = extract_sections
 
