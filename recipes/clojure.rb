@@ -53,7 +53,13 @@ class Clojure < Kindlefodder
 
     article.search('a').each do |link|
       if link[:href] =~ /\/\//
-        link[:href] = '#'
+        link.name = 'strong'
+      end
+    end
+
+    article.search('br').each do |br|
+      if br.next && br.next.name == 'br'
+        br.remove
       end
     end
 
