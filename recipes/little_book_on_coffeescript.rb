@@ -6,7 +6,10 @@ class LittleCoffeeScript < Kindlefodder
     @start_url = "http://arcturo.github.com/library/coffeescript/"
     @start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
 
-    sections = extract_articles
+    sections = [{
+      title:"Main",
+      articles:extract_articles
+      }]
 
     File.open("#{output_dir}/sections.yml", 'w') {|f|
       f.puts sections.to_yaml
