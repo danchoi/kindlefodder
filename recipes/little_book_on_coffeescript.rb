@@ -3,14 +3,15 @@ require 'kindlefodder'
 class LittleCoffeeScript < Kindlefodder
   
   def get_source_files
+    # fetch first page (with TOC)
     @start_url = "http://arcturo.github.com/library/coffeescript/"
     @start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
 
+    # create sections.yml
     sections = [{
       title:"Main",
       articles:extract_articles
       }]
-
     File.open("#{output_dir}/sections.yml", 'w') {|f|
       f.puts sections.to_yaml
     }
@@ -22,6 +23,7 @@ class LittleCoffeeScript < Kindlefodder
       `curl -s 'http://akamaicovers.oreilly.com/images/0636920024309/lrg.jpg' > cover.jpg`
       run_shell_command "convert cover.jpg -type Grayscale -resize '400x300>' cover.gif"
     end
+    # book's info
     {
       'title' => 'The Little Book on CoffeeScript',
       'author' => 'Alex MacCaw',
@@ -32,11 +34,9 @@ class LittleCoffeeScript < Kindlefodder
   
 
   def extract_articles
+    # iterating over Table of Contents and extracting articles
     @start_doc.search('ol.pages li a').map do |o|
-      puts o
       title = o.inner_text
-
-      $stderr.puts "#{title}"
 
       FileUtils::mkdir_p "#{output_dir}/articles"
 
@@ -48,17 +48,18 @@ class LittleCoffeeScript < Kindlefodder
   end
   def save_article_and_return_path href, filename=nil
     path = filename || "articles/" + href.sub(/^\//, '').sub(/\/$/, '').gsub('/', '.')
+    # fetching article
     full_url = @start_url + href.sub(/^\//, '')
-    puts path, full_url
     html = run_shell_command "curl -s #{full_url}"
+    # cleaning article
     article_doc = Nokogiri::HTML html
     b = article_doc.at(".back")
     b.remove if b
+    # saving article
     res = article_doc.at('#content').inner_html
     File.open("#{output_dir}/#{path}", 'w') {|f| f.puts res}
     path
   end
-  
 end
 
 LittleCoffeeScript.generate
