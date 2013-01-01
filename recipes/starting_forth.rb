@@ -67,7 +67,14 @@ class StartingForth < Kindlefodder
       puts "# IMG #{img[:src]} -> #{new_img_src}"
       img[:src] = new_img_src
     end
-   
+    article_doc.xpath("//a").each do |a|
+      match = a[:href].match(/^( )?http/) if a[:href]
+      if !match
+        new_href = base_article_url+a[:href]
+        puts "# LINK #{a[:href]} -> #{new_href}"
+        a[:href] = new_href
+      end
+    end
 
 
     # saving article
