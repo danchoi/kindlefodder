@@ -8,7 +8,7 @@ class SmoothCoffeeScript < Kindlefodder
   
   def get_source_files
     @start_url = "http://autotelicum.github.com/Smooth-CoffeeScript/SmoothCoffeeScript.html"
-    @start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
+    @start_doc = Nokogiri::HTML(run_shell_command("curl -s #{@start_url}"),nil,'UTF-8')
 
     sections = extract_sections
     File.open("#{output_dir}/sections.yml", 'w') {|f|
@@ -133,7 +133,7 @@ class SmoothCoffeeScript < Kindlefodder
     article_doc = Nokogiri::HTML res
     
     puts "Saving #{path}"
-    File.open("#{output_dir}/#{path}", 'w') {|f| f.puts preprocess_article_doc(article_doc).to_html}
+    File.open("#{output_dir}/#{path}", 'w') {|f| f.puts preprocess_article_doc(article_doc)}
     result = { 
       title:header.text,
       path:path,
@@ -155,15 +155,23 @@ class SmoothCoffeeScript < Kindlefodder
     
     article_doc.xpath("//a").each do |a|
       match = a[:href].match(/^#(.*)/) if a[:href]
-      matched_href = (""+ to_fs_name(match[1])+".html") if match
+      matched_href = ("book.html#"+ to_fs_name(match[1])) if match
       if !matched_href.nil?
         puts "# LINK #{a[:href]} -> #{matched_href}"
         a[:href] = matched_href
       end
     end
+    article_doc.xpath("//pre").each do |pre|
+      if pre.text.lines.count <2 and pre.text.length<40
+        pre.name = "b"
+        pre.parent.replace(pre)
+      end
+    end
     
     
-    article_doc
+    
+    
+    article_doc.to_html(encoding:'UTF-8')
   end
   
 end
