@@ -48,7 +48,7 @@ class Heroku < Kindlefodder
     # The start_url is any webpage that will contain the navigation structure
     # of the documentaion
 
-    start_url = "http://devcenter.heroku.com/categories/add-on-documentation" 
+    start_url = "https://devcenter.heroku.com/categories/add-on-documentation"
 
     @start_doc = Nokogiri::HTML run_shell_command("curl -s #{start_url}")
 
@@ -89,7 +89,7 @@ class Heroku < Kindlefodder
     @start_doc.search('select[@id=quicknav] option').map {|o| 
       title = o.inner_text
       $stderr.puts "#{title}"
-      articles_list = run_shell_command "curl -s http://devcenter.heroku.com#{o[:value]}"
+      articles_list = run_shell_command "curl -s https://devcenter.heroku.com#{o[:value]}"
       { 
         title: title,
         articles: get_articles(articles_list)
@@ -106,11 +106,11 @@ class Heroku < Kindlefodder
     category_page = Nokogiri::HTML html 
     xs = category_page.search("ul.articles a").map {|x|
       title = x.inner_text.strip
-      href = x[:href] =~ /^http/ ? x[:href] : "http://devcenter.heroku.com#{x[:href]}" 
+      href = x[:href] =~ /^http/ ? x[:href] : "https://devcenter.heroku.com#{x[:href]}"
       $stderr.puts "- #{title}"
 
       # Article content will be saved to path articles/filename
-      path = "articles/" + href[/articles\/([\w-]+)(#\w+|)$/, 1]
+      path = "articles/" + href[/(articles|changelog-items)\/([\w-]+)(#\w+|)$/, 1]
 
       # Save just the HTML fragment that contains the article text. Throw out everything else.
 
