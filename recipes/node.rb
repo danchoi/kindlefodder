@@ -52,8 +52,6 @@ class Node < Kindlefodder
 
     @start_url = "http://nodejs.org/docs/#{@node_version}/api/"
 
-    # @start_doc = Nokogiri::HTML run_shell_command("curl -s #{@start_url}")
-
     File.open("#{output_dir}/sections.yml", 'w') {|f|
 
       # extract_sections() is defined below.  It gets the sections of the ebook
@@ -67,8 +65,7 @@ class Node < Kindlefodder
 
   def document 
     {
-      # 'title' => 'Node.js v#{node_version} Manual & Documentation',
-      'title' => 'Node.js Manual & Documentation',
+      'title' => "Node.js (#{@node_version}) Manual & Documentation",
       'cover' => nil,
       'masthead' => nil,
     }
@@ -91,7 +88,7 @@ class Node < Kindlefodder
   def extract_sections
     articles_list = run_shell_command "curl -s #{@start_url}"
     [{ 
-      title: "Main",
+      title: "API Documentation",
       articles: get_articles(articles_list)
     }]
   end
@@ -104,6 +101,7 @@ class Node < Kindlefodder
     FileUtils::mkdir_p "#{output_dir}/articles"
     category_page = Nokogiri::HTML html
     xs = category_page.search("#apicontent a").map {|x|
+
       title = x.inner_text.strip
       href = x[:href] =~ /^https?:/ ? x[:href] : "#{@start_url}#{x[:href]}"
       $stderr.puts "- #{title}"
@@ -112,15 +110,15 @@ class Node < Kindlefodder
       path = "articles/" + x[:href]
 
       # Save just the HTML fragment that contains the article text. Throw out everything else.
-
       html = run_shell_command "curl -s #{href}"
+      
       article_doc = Nokogiri::HTML html
-      content = article_doc.at('#toc').inner_html + article_doc.at('#apicontent').inner_html
+      article_doc.search("a.mark").remove()
+      content = article_doc.at('#apicontent').inner_html
       
       File.open("#{output_dir}/#{path}", 'w') {|f| f.puts(content)}
 
       # Return the article metadata hash for putting into the section's articles array
-
       { 
         title: title,
         path: path
