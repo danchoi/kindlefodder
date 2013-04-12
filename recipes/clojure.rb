@@ -23,7 +23,7 @@ class Clojure < Kindlefodder
 
 
   def extract_sections
-    @start_doc.search('.WikiCustomNav ul a.wiki_link').map do |o|
+    @start_doc.search('.WikiCustomNav a.wiki_link').map do |o|
       title = o.inner_text
 
       $stderr.puts "#{title}"
