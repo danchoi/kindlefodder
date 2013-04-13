@@ -45,7 +45,7 @@ class Node < Kindlefodder
 
   def get_source_files
 
-    @node_version = ARGV[0] ? "v#{ARGV[0]}" : "latest"
+    @node_version = ARGV.last && ARGV.last != "compile[node.rb]" ? "v#{ARGV.last}" : "latest"
 
     # The start_url is any webpage that will contain the navigation structure
     # of the documentaion
