@@ -1,4 +1,5 @@
-# encoding: utf-8 
+# encoding: utf-8
+
 =begin
 
 Require this file in your recipe and subclass KindleFodder.
@@ -20,36 +21,35 @@ require 'yaml'
 require 'date'
 
 class Kindlefodder
-
-  STYLESHEET = File.absolute_path "css/kindle.css"
+  STYLESHEET = File.absolute_path('css/kindle.css')
 
   class << self
     attr_accessor :noclobber, :nomobi
   end
 
   # Run the recipe class with this command
-
   def self.generate
-    puts "output dir is #{output_dir}"
-    if self.noclobber
+    puts "Output dir is #{output_dir}"
+
+    if noclobber
       puts "Preserving files in #{output_dir}"
     else
-      run_shell_command "rm -rf #{output_dir}"
+      FileUtils.rmtree(output_dir)
     end
-    `mkdir -p #{output_dir}/articles`
+
+    FileUtils::mkdir_p("#{output_dir}/articles")
+
     generator = new
     generator.get_source_files
     generator.build_kindlerb_tree
   end
 
   def self.recipe_slug
-    self.to_s.gsub(/([a-z]+)([A-Z][a-z]+)/, '\1_\2').downcase  
+    to_s.gsub(/([a-z]+)([A-Z][a-z]+)/, '\1_\2').downcase
   end
 
   def self.output_dir
-    d = "src/#{recipe_slug}"
-    FileUtils::mkdir_p d
-    d
+    "src/#{recipe_slug}"
   end
 
   def output_dir
@@ -57,8 +57,8 @@ class Kindlefodder
   end
 
   def build_kindlerb_tree
-    sections = YAML::load_file "#{output_dir}/sections.yml"
-    sections.select! {|s| !s[:articles].empty?}
+    sections = YAML::load_file("#{output_dir}/sections.yml")
+    sections.select! { |s| !s[:articles].empty? }
     Dir.chdir output_dir do
       sections.each_with_index {|s, section_idx|
         title = s[:title]
@@ -81,16 +81,26 @@ class Kindlefodder
           out = item.to_xhtml
 
           # hacks to get the articles list to appear properly with summaries
-          out.sub!('html xmlns="http://www.w3.org/1999/xhtml"', 
-            '\& xml:lang="en" lang="en"')
+          out.sub!(
+            'html xmlns="http://www.w3.org/1999/xhtml"',
+            '\& xml:lang="en" lang="en"'
+          )
           out.sub!(/<!DOCTYPE.*$/, '')
-          out.sub!('meta http-equiv="Content-Type" content="text/html; charset=UTF-8"', 
-            'meta content="http://www.w3.org/1999/xhtml; charset=utf-8" http-equiv="Content-Type"')
+
+          out.sub!(
+            'meta http-equiv="Content-Type" content="text/html; charset=UTF-8"',
+            'meta content="http://www.w3.org/1999/xhtml; charset=utf-8" http-equiv="Content-Type"'
+          )
+
           out.strip!
+
           # remove these useless characters:
           out.gsub!('&#13;', '')
 
-          File.open(item_path, 'w:utf-8'){|f| f.puts out}
+          File.open(item_path, 'w:utf-8') do |f|
+            f.puts out
+          end
+
           puts "  #{item_path} -> #{article_title}"
         }
       }
@@ -99,24 +109,30 @@ class Kindlefodder
   end
 
   def add_head_section(doc, title, description='', author='')
-    head = Nokogiri::XML::Node.new "head", doc
-    title_node = Nokogiri::XML::Node.new "title", doc
+    head = Nokogiri::XML::Node.new('head', doc)
+
+    title_node = Nokogiri::XML::Node.new('title', doc)
     title_node.content = title
     title_node.parent = head
-    description_node = Nokogiri::XML::Node.new "meta", doc
+
+    description_node = Nokogiri::XML::Node.new('meta', doc)
     description_node['name'] = 'description'
     description_node['content'] = description
     description_node.parent = head
-    author_node = Nokogiri::XML::Node.new "meta", doc
+
+    author_node = Nokogiri::XML::Node.new("meta", doc)
     author_node['name'] = 'author'
     author_node['content'] = author
     author_node.parent = head
-    css = Nokogiri::XML::Node.new "link", doc
+
+    css = Nokogiri::XML::Node.new("link", doc)
     css['rel'] = 'stylesheet'
     css['type'] = 'text/css'
     css['href'] = STYLESHEET
+
     css.parent = head
-    doc.at("body").before head
+
+    doc.at('body').before head
   end
 
   def self.run_shell_command cmd
@@ -129,12 +145,13 @@ class Kindlefodder
   end
 
   def download_images! doc
-    doc.search('img').each {|img|
-      src = img[:src] 
+    doc.search('img').each do |img|
+      src = img[:src]
       /(?<img_file>[^\/]+)$/ =~ src
 
       FileUtils::mkdir_p 'images'
       FileUtils::mkdir_p 'processed_images'
+
       unless File.size?("images/#{img_file}")
         run_shell_command "curl -Ls '#{src}' > images/#{img_file}"
         if img_file !~ /(png|jpeg|jpg|gif)$/i
@@ -143,13 +160,17 @@ class Kindlefodder
           img_file = "#{img_file}.#{filetype}"
         end
       end
+
       processed_image_path = "processed_images/#{img_file.gsub('%20', '_').sub(/(\.\w+)$/, "-grayscale.gif")}"
-      sleep 0.1
+
+      sleep 0.1 # TODO why?
+
       unless File.size?(processed_image_path)
         run_shell_command "convert images/#{img_file} -compose over -background white -flatten -resize '300x200>' -alpha off #{processed_image_path}"
       end
+
       img['src'] = [Dir.pwd, processed_image_path].join("/")
-    }
+    end
   end
   
   def fixup_html! doc
@@ -168,37 +189,38 @@ class Kindlefodder
       }
     }
 
-    doc.search('li,p').each {|li|
+    doc.search('li,p').each do |li|
       # remove any leading spaces before elements inside any li tag
       # THIS causes encoding problems!
       #li.inner_html = li.inner_html.strip
       if (n = li.children.first) && n.text?
         n.content = n.content.strip
       end
+
       if (n = li.children.last) && n.text?
         n.content = n.content.strip
       end
-    }
+    end
   end
 
   # some fixup utitity methods
 
-  def tighten_pre doc
+  def tighten_pre(doc)
     # remove trailing and leading padding from <pre> sections
-    doc.search('pre').each {|x|
+    doc.search('pre').each do |x|
       x.inner_html = x.inner_html.strip
-    }
+    end
   end
 
   # name is usually "li,dd"
-  def tighten_lists doc, target="li,dd"
-    doc.search(target).each {|x|
-      x.search('p').each {|p| 
+  def tighten_lists(doc, target="li,dd")
+    doc.search(target).each do |x|
+      x.search('p').each do |p|
         p.swap p.children
         p.remove
-      }
+      end
       x.inner_html = x.inner_html.strip
-    }
+    end
   end
 
 
@@ -216,10 +238,11 @@ class Kindlefodder
   end
 
   def mobi!
-    File.open("_document.yml", 'w') {|f| 
+    File.open('_document.yml', 'w') do |f|
       d = default_metadata.merge(document)
-      f.puts d.to_yaml
-    }
+      f.puts(d.to_yaml)
+    end
+
     exec 'kindlerb'
   end
 end
