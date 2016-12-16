@@ -86,10 +86,10 @@ class Heroku < Kindlefodder
   # see at the end.
 
   def extract_sections
-    @start_doc.search('select[@id=quicknav] option').map {|o| 
+    @start_doc.search('ul.secondary-nav li ul li a').map {|o|
       title = o.inner_text
       $stderr.puts "#{title}"
-      articles_list = run_shell_command "curl -s https://devcenter.heroku.com#{o[:value]}"
+      articles_list = run_shell_command "curl -s https://devcenter.heroku.com#{o['href']}"
       { 
         title: title,
         articles: get_articles(articles_list)
@@ -104,19 +104,22 @@ class Heroku < Kindlefodder
   def get_articles html
     FileUtils::mkdir_p "#{output_dir}/articles"
     category_page = Nokogiri::HTML html 
-    xs = category_page.search("ul.articles a").map {|x|
+    xs = category_page.search("ul.list-icons li a").map {|x|
       title = x.inner_text.strip
       href = x[:href] =~ /^http/ ? x[:href] : "https://devcenter.heroku.com#{x[:href]}"
       $stderr.puts "- #{title}"
 
       # Article content will be saved to path articles/filename
-      path = "articles/" + href[/(articles|changelog-items)\/([\w-]+)(#\w+|)$/, 1]
+      path = "articles/" + href[/(articles|changelog-items)\/([\w-]+)(#\w+|)$/, 2]
 
       # Save just the HTML fragment that contains the article text. Throw out everything else.
 
       html = run_shell_command "curl -s #{href}"
       article_doc = Nokogiri::HTML html
-      File.open("#{output_dir}/#{path}", 'w') {|f| f.puts(article_doc.at('article').inner_html)}
+      File.open("#{output_dir}/#{path}", 'w') do |f|
+        article_body = article_doc.at('article, div.js-dynamic-tutorial-source')
+        f.puts(article_body.inner_html)
+      end
 
       # Return the article metadata hash for putting into the section's articles array
 
