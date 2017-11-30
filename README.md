@@ -219,6 +219,20 @@ label. This will help prevent unnecessary duplication of effort.
 [issues]:https://github.com/danchoi/kindlefodder/issues
 
 
+## Working with Docker
+
+A Dockerfile is provided to build an image with all dependencies. In order to build image, run
+
+```bash
+docker build -t kindlefodder .
+```
+
+In order to build your recipe, run
+
+```bash
+docker run --rm -v $PWD/src:/usr/app/src kindlefodder recipes/your_new_recipe.rb
+```
+
 ## Issues
 
 This project is new and rough around the edges, so please feel welcome to
